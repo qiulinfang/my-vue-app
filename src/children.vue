@@ -19,7 +19,7 @@
       <childeren2 :tabdata="tabledata"></childeren2>
     </template>
   </el-drawer>
-  {{ datsdfsa }}
+  {{ datsdfsa }} 
   sdfsdf
 </template>
 
