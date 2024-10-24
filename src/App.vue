@@ -1,16 +1,19 @@
 <template>
   <children :tabledata="tableData"></children>
   <coin></coin>
+  <direct></direct>
 </template>
   
 <script>
 import children from "./children.vue";
 import coin from "./components/coin.vue";
+import direct from "./components/direct.vue"; 
 
 export default {
   components: {
     children,
     coin,
+    direct,
   },
   data() {
     return {
