@@ -20,7 +20,9 @@ declare module 'vue' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    Form: typeof import('./src/components/User Experience/form.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Table: typeof import('./src/components/User Experience/table.vue')['default']
     Template: typeof import('./src/components/template.vue')['default']
   }
 }
