@@ -7,6 +7,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Children: typeof import('./src/components/children.vue')['default']
+    Children2: typeof import('./src/components/children2.vue')['default']
     Coin: typeof import('./src/components/coin.vue')['default']
     Direct: typeof import('./src/components/direct.vue')['default']
     ElButtom: typeof import('element-plus/es')['ElButtom']
@@ -21,6 +23,7 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Form: typeof import('./src/components/User Experience/form.vue')['default']
+    GreetingComponent: typeof import('./src/components/async/GreetingComponent.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Table: typeof import('./src/components/User Experience/table.vue')['default']
     Template: typeof import('./src/components/template.vue')['default']

@@ -19,7 +19,7 @@
       <childeren2 :tabdata="tabledata"></childeren2>
     </template>
   </el-drawer>
-  {{ datsdfsa }} 
+  {{ data }} 
   sdfsdf
 </template>
 
@@ -49,22 +49,8 @@ export default {
   },
   methods: {
     fetchData() {
-      return new Promise((resolve, reject) => {
-        console.log(2);
-        axios.get("https://api.kuleu.com/api/getGreetingMessage")
-          .then(response => {
-            console.log(3);
-            this.data = response.data;
-            this.initsldfjk();
-          })
-          .catch(error => {
-            console.error("请求数据失败:", error);
-          });
-      });
-    },
-    initsldfjk() {
-      console.log(4);
-      this.datsdfsa = this.data;
+      let res = axios.get("https://api.kuleu.com/api/getGreetingMessage")
+      this.data = res.data;
     },
   },
 };
