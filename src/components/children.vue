@@ -51,7 +51,9 @@ export default {
     async fetchData() {
       let res1 = axios.get("https://api.kuleu.com/api/getGreetingMessage");
       console.log("🚀 ~ fetchData ~ res1:", res1); //🚀 ~ fetchData ~ res1: Promise {<pending>}
-
+      console.log("🚀 ~ fetchData ~ res1:", res1.data); //undefined
+      // 你可以在这里使用 res1.data，但是它目前还是 undefined，因为 res1 是一个 Promise 对象，你需要使用 then() 方法来获取实际的数据。
+      
       axios
         .get("https://api.kuleu.com/api/getGreetingMessage")
         .then((response) => {

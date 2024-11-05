@@ -1,20 +1,19 @@
 <template>
-  <children :tabledata="tableData"></children>
-  <coin></coin>
-  <direct></direct>
-  <GreetingComponent></GreetingComponent>
+  <layout></layout>
 </template>
   
 <script>
 import children from "./components/children.vue";
 import coin from "./components/coin.vue";
 import direct from "./components/direct.vue"; 
+import layout from "./components/Layout.vue";
 
 export default {
   components: {
     children,
     coin,
     direct,
+    layout
   },
   data() {
     return {
