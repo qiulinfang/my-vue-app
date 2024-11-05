@@ -9,14 +9,12 @@
 import children from "./components/children.vue";
 import coin from "./components/coin.vue";
 import direct from "./components/direct.vue"; 
-import GreetingComponent from "./components/async/GreetingComponent.vue";
 
 export default {
   components: {
     children,
     coin,
     direct,
-    GreetingComponent,
   },
   data() {
     return {
