@@ -24,6 +24,13 @@
           </template>
           <el-menu-item index="/settings">系统设置</el-menu-item>
         </el-sub-menu>
+        <el-sub-menu index="3">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>Navigator One</span>
+          </template>
+          <el-menu-item index="/daunju">短剧</el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-col>
     <el-col :span="21">
