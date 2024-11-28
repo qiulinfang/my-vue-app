@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from './router'; // 引入路由配置
+import router from "./router/router"; // 引入路由配置
+import GlobalMethods from './plugins/globalMethods';
+import DrawerPlugin from './plugins/DrawerPlugin';
 
 const app = createApp(App);
 
@@ -26,5 +28,18 @@ app.directive("compare-numbers", {
 
 app.use(router);
 
+// 注册插件
+app.use(GlobalMethods);
+app.use(DrawerPlugin);
+
+
+
 
 app.mount("#app");
+
+// 如果您正在使用CDN引入，请删除下面一行。
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}

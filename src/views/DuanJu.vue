@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button @click="addShortPlay">新增</el-button>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="name" label="短剧名称" width="180" />
       <el-table-column prop="viewlink" label="短剧链接" width="180" />
@@ -17,6 +18,10 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
+    <div>
+          <el-button v-drawer="{ title: '基本抽屉', content: '一些内容...' }">打开抽屉</el-button>
+          <global-drawer />
+        </div>
   </div>
 </template>
 
@@ -47,6 +52,9 @@ export default {
     this.fetchData();
   },
   methods: {
+    addShortPlay(){
+      console.log("addShortPlay");
+    },
     async fetchData() {
       // 定义请求参数
       const params = {

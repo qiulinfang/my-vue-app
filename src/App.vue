@@ -5,14 +5,12 @@
 <script>
 import children from "./views/children.vue";
 import coin from "./views/coin.vue";
-import direct from "./views/direct.vue"; 
-import layout from "./views/Layout.vue";
+import layout from "./components/Layout.vue";
 
 export default {
   components: {
     children,
     coin,
-    direct,
     layout
   },
   data() {

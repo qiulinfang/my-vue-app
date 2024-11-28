@@ -10,6 +10,7 @@ declare module 'vue' {
     Children: typeof import('./src/components/children.vue')['default']
     Children2: typeof import('./src/components/children2.vue')['default']
     Coin: typeof import('./src/components/coin.vue')['default']
+    Dashboard: typeof import('./src/components/Dashboard.vue')['default']
     Direct: typeof import('./src/components/direct.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButtom: typeof import('element-plus/es')['ElButtom']

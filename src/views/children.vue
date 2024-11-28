@@ -21,13 +21,17 @@
   </el-drawer>
   {{ data }}
   sdfsdf
+  <div>
+    <button @click="sayHello">Say Hello</button>
+    <button @click="showAge">Show Age</button>
+  </div>
 </template>
 
 
 
 <script>
 import axios from "axios";
-import childeren2 from "../components./views/children2.vue";
+import childeren2 from "./children2.vue";
 
 export default {
   props: {
@@ -50,6 +54,13 @@ export default {
     this.fetchData();
   },
   methods: {
+    sayHello() {
+      this.$helloWorld('User'); // 输出: Hello, User! Welcome to our application.
+    },
+    showAge() {
+      const age = this.$calculateAge(1990); // 假设用户出生年份为1990
+      alert(`Your age is ${age} years old.`);
+    },
     async fetchData() {
       let res1 = axios.get("https://api.kuleu.com/api/getGreetingMessage");
       console.log("🚀 ~ fetchData ~ res1:", res1); //🚀 ~ fetchData ~ res1: Promise {<pending>}
