@@ -39,6 +39,8 @@ declare module 'vue' {
     GreetingComponent: typeof import('./src/components/async/GreetingComponent.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Layout: typeof import('./src/components/Layout.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     Table: typeof import('./src/components/User Experience/table.vue')['default']
     Template: typeof import('./src/components/template.vue')['default']
   }

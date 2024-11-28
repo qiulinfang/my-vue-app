@@ -3,10 +3,10 @@
 </template>
   
 <script>
-import children from "./components/children.vue";
-import coin from "./components/coin.vue";
-import direct from "./components/direct.vue"; 
-import layout from "./components/Layout.vue";
+import children from "./views/children.vue";
+import coin from "./views/coin.vue";
+import direct from "./views/direct.vue"; 
+import layout from "./views/Layout.vue";
 
 export default {
   components: {
