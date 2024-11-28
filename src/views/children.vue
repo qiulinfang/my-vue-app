@@ -23,6 +23,8 @@
   sdfsdf
 </template>
 
+
+
 <script>
 import axios from "axios";
 import childeren2 from "../components./views/children2.vue";
