@@ -2,7 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/router"; // 引入路由配置
 import GlobalMethods from './plugins/globalMethods';
-import DrawerPlugin from './plugins/DrawerPlugin';
 
 const app = createApp(App);
 
@@ -15,6 +14,11 @@ app.directive("click-log", {
     });
   },
 });
+// 如果需要全局注册特定的功能，如 MessageBox、Message、Notification
+import { ElMessageBox, ElMessage, ElNotification } from 'element-plus';
+app.config.globalProperties.$msgbox = ElMessageBox;
+app.config.globalProperties.$message = ElMessage;
+app.config.globalProperties.$notify = ElNotification;
 
 app.directive("compare-numbers", {
   // 当被绑定的元素插入到 DOM 中时……
@@ -27,10 +31,8 @@ app.directive("compare-numbers", {
 });
 
 app.use(router);
-
 // 注册插件
 app.use(GlobalMethods);
-app.use(DrawerPlugin);
 
 
 

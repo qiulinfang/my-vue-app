@@ -1,11 +1,13 @@
 <template>
   <div>
+    <el-button @click="compare">sdf</el-button>
     <el-button @click="addShortPlay">新增</el-button>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="name" label="短剧名称" width="180" />
       <el-table-column prop="viewlink" label="短剧链接" width="180" />
       <el-table-column prop="addtime" label="添加时间" />
     </el-table>
+
     <el-pagination
       v-model:current-page="currentPage4"
       v-model:page-size="pageSize4"
@@ -19,9 +21,27 @@
       @current-change="handleCurrentChange"
     />
     <div>
-          <el-button v-drawer="{ title: '基本抽屉', content: '一些内容...' }">打开抽屉</el-button>
-          <global-drawer />
-        </div>
+      <el-button @click="showMessageBox">Show MessageBox</el-button>
+      <global-drawer />
+
+      <el-table :data="tableData1" style="width: 100%">
+        <el-table-column prop="title" label="热搜标题" width="180" />
+        <el-table-column prop="heat" label="热搜热度" width="180" />
+        <el-table-column prop="link" label="b站链接" />
+      </el-table>
+      <el-pagination
+        v-model:current-page="currentPage4"
+        v-model:page-size="pageSize4"
+        :page-sizes="pageSizes"
+        :size="size"
+        :disabled="disabled"
+        :background="background"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total1"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -31,13 +51,70 @@ import axios from "axios";
 export default {
   data() {
     return {
+      array1: [
+        {
+          id: 1,
+          name: "Alice",
+          age: 25,
+          details: {
+            address: "123 Main St",
+            contacts: {
+              email: "alice@example.com",
+              phone: "123-456-7890",
+            },
+          },
+        },
+        {
+          id: 2,
+          name: "Bob",
+          age: 30,
+          details: {
+            address: "456 Elm St",
+            contacts: {
+              email: "bob@example.com",
+              phone: "234-567-8901",
+            },
+          },
+        },
+      ],
+
+      array2: [
+        {
+          id: 1,
+          name: "Alice",
+          age: 26,
+          details: {
+            address: "123 Main St",
+            contacts: {
+              email: "alice@example.com",
+              phone: "123-456-7890",
+            },
+          },
+        },
+        {
+          id: 2,
+          name: "Bobby",
+          age: 30,
+          details: {
+            address: "456 Elm St",
+            contacts: {
+              email: "bobby@example.com",
+              phone: "234-567-8901",
+            },
+          },
+        },
+      ],
+
       // 表格数据，初始化为null，后续将被动态赋值
       allData: null, // 后台返回的所有结果
+      allData1: null, // 后台返回的所有结果
       tableData: null, // 当前页码的表格数据
+      tableData1: null, // 当前页码的表格数据
 
       // 分页功能相关的属性
       currentPage4: 1, // 当前页码，默认为第1页
       total: 0,
+      total1: 0,
       pageSize4: 5, // 每页显示的数据条数，此处设置为5条
       pageSizes: [2, 3, 4, 5],
       size: "small", // 按钮大小，此处设置为小号
@@ -52,7 +129,34 @@ export default {
     this.fetchData();
   },
   methods: {
-    addShortPlay(){
+    compare() {
+      console.log(this.$compare(this.array1, this.array2));
+    },
+    showMessageBox() {
+      this.$msgbox({
+        title: "Confirm",
+        message: "Are you sure?",
+        showCancelButton: true,
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+      }).then((action) => {
+        if (action === "confirm") {
+          this.$message({
+            type: "success",
+            message: "Confirmed!",
+          });
+        } else {
+          this.$message({
+            type: "info",
+            message: "Canceled",
+          });
+        }
+      });
+    },
+    openCustomDrawer() {
+      this.$myMethod();
+    },
+    addShortPlay() {
       console.log("addShortPlay");
     },
     async fetchData() {
@@ -68,6 +172,20 @@ export default {
           this.allData = response.data.data;
           this.total = response.data.data.length;
           this.tableData = this.getNeedArr(this.allData, this.pageSize4)[
+            this.currentPage4 - 1
+          ]; //当前页的表格数据
+        })
+        .catch((error) => {
+          console.error("请求错误:", error);
+        });
+
+      // 发送GET请求
+      axios
+        .get("https://v.api.aa1.cn/api/bilibili-rs/")
+        .then((response) => {
+          this.allData1 = response.data.data;
+          this.total1 = response.data.data.length;
+          this.tableData1 = this.getNeedArr(this.allData1, this.pageSize4)[
             this.currentPage4 - 1
           ]; //当前页的表格数据
         })
@@ -113,5 +231,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
