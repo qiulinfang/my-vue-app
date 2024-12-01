@@ -11,7 +11,7 @@ export default {
   components: {
     children,
     coin,
-    layout
+    layout,
   },
   data() {
     return {

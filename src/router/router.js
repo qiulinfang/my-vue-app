@@ -3,6 +3,7 @@ import Layout from "../components/Layout.vue";
 import Dashboard from "../views/Dashboard.vue"; // 假设这是你的首页组件
 import Users from "../views/Users.vue"; // 用户管理页面组件
 import duanju from "../views/DuanJu.vue";
+import ParentComponent from "../views/ParentComponent.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/daunju',
     name: 'Daunju',
     component: duanju
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: ParentComponent
   },
 ];
 
