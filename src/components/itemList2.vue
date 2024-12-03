@@ -224,6 +224,7 @@ export default {
     validateForm() {
       return new Promise((resolve, reject) => {
         this.$refs.formRef.validate((valid) => {
+          console.log("🚀 ~ this.$refs.formRef.validate ~ valid:", valid)
           if (valid) {
             resolve(true);
           } else {

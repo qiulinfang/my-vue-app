@@ -1,5 +1,51 @@
 <template>
-  <el-form :model="parentForm" ref="parentFormRef">
+  <el-form :model="parentForm" :rules="rules" ref="parentFormRef">
+    <!-- 学校信息表单项 -->
+    <h2>学校信息表单</h2>
+    <el-form-item label="学校名称" prop="schoolName">
+      <el-input
+        v-model="parentForm.schoolName"
+        placeholder="请输入学校名称"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="学校地址" prop="schoolAddress">
+      <el-input
+        v-model="parentForm.schoolAddress"
+        placeholder="请输入学校地址"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="学校电话" prop="schoolPhone">
+      <el-input
+        v-model="parentForm.schoolPhone"
+        placeholder="请输入学校电话"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="学校邮箱" prop="schoolEmail">
+      <el-input
+        v-model="parentForm.schoolEmail"
+        placeholder="请输入学校邮箱"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="学校网站" prop="schoolWebsite">
+      <el-input
+        v-model="parentForm.schoolWebsite"
+        placeholder="请输入学校网站"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="成立年份" prop="schoolFoundedYear">
+      <el-input-number
+        v-model="parentForm.schoolFoundedYear"
+        :min="1800"
+        :max="2023"
+        placeholder="请输入成立年份"
+      ></el-input-number>
+    </el-form-item>
+    <el-form-item label="学校类型" prop="schoolType">
+      <el-select v-model="parentForm.schoolType" placeholder="请选择学校类型">
+        <el-option label="公立" value="public"></el-option>
+        <el-option label="私立" value="private"></el-option>
+      </el-select>
+    </el-form-item>
     <!-- 父组件表单项 -->
     <h2>学生信息表单</h2>
     <itemList2 :config="formConfig" v-model="students" ref="itemList2" />
@@ -33,6 +79,7 @@ export default {
 
         // 验证子组件表单
         const childValid = await this.$refs.itemList2.validateForm();
+        console.log("🚀 ~ submitForm ~ childValid:", childValid);
         if (!childValid) {
           console.log("子组件表单验证失败");
           return;
@@ -148,9 +195,76 @@ export default {
       },
     ];
 
+    const parentForm = ref({
+      schoolName: "",
+      schoolAddress: "",
+      schoolPhone: "",
+      schoolEmail: "",
+      schoolWebsite: "",
+      schoolFoundedYear: null,
+      schoolType: "",
+    });
+
+    // 添加校验规则
+    const rules = {
+      schoolName: [
+        { required: true, message: "请输入学校名称", trigger: "blur" },
+        {
+          min: 2,
+          max: 50,
+          message: "学校名称长度在 2 到 50 个字符",
+          trigger: "blur",
+        },
+      ],
+      schoolAddress: [
+        { required: true, message: "请输入学校地址", trigger: "blur" },
+        {
+          min: 5,
+          max: 100,
+          message: "学校地址长度在 5 到 100 个字符",
+          trigger: "blur",
+        },
+      ],
+      schoolPhone: [
+        { required: true, message: "请输入学校电话", trigger: "blur" },
+        {
+          pattern: /^1[3-9]\d{9}$/,
+          message: "请输入正确的电话号码",
+          trigger: "blur",
+        },
+      ],
+      schoolEmail: [
+        { required: true, message: "请输入学校邮箱", trigger: "blur" },
+        { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" },
+      ],
+      schoolWebsite: [
+        { required: true, message: "请输入学校网站", trigger: "blur" },
+        {
+          pattern: /^(http|https):\/\/\S+$/,
+          message: "请输入正确的网址",
+          trigger: "blur",
+        },
+      ],
+      schoolFoundedYear: [
+        { required: true, message: "请输入成立年份", trigger: "blur" },
+        {
+          type: "number",
+          min: 1800,
+          max: 2023,
+          message: "成立年份必须在 1800 到 2023 之间",
+          trigger: "blur",
+        },
+      ],
+      schoolType: [
+        { required: true, message: "请选择学校类型", trigger: "change" },
+      ],
+    };
+
     return {
       students,
       formConfig,
+      parentForm,
+      rules,
     };
   },
 };
