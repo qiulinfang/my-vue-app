@@ -1,33 +1,37 @@
 <template>
-  <el-table :data="localStudentsCopy" style="width: 100%">
-    <el-table-column
-      v-for="(field, index) in config"
-      :key="index"
-      :prop="field.key"
-      :label="field.label"
-      :width="getColumnWidth(field)"
-    >
-      <template #default="scope">
-        <component
-          :is="getComponentType(field.type)"
-          v-bind="getComponentProps(scope.row, field)"
-          v-model="scope.row[field.key]"
-          :options="field.options"
-          @input="handleInputOrChange(scope.$index, field.key, $event, shouldUseInputEvent(field.type))"
-          @change="handleInputOrChange(scope.$index, field.key, $event, shouldUseChangeEvent(field.type))"
-          v-bind:v-custom-directive="getCustomDirectiveParams(scope.row, field)"
-        >
-          <el-option
-            v-if="field.type === 'select'"
-            v-for="option in field.options"
-            :key="option.value"
-            :label="option.label"
-            :value="option.value"
-          ></el-option>
-        </component>
-      </template>
-    </el-table-column>
-  </el-table>
+  <el-form :model="localStudentsCopy" ref="formRef">
+    <el-table :data="localStudentsCopy" style="width: 100%">
+      <el-table-column
+        v-for="(field, index) in config"
+        :key="index"
+        :prop="field.key"
+        :label="field.label"
+        :width="getColumnWidth(field)"
+      >
+        <template #default="scope">
+          <el-form-item :prop="`${scope.$index}.${field.key}`" :rules="field.rules">
+            <component
+              :is="getComponentType(field.type)"
+              v-bind="getComponentProps(scope.row, field)"
+              v-model="scope.row[field.key]"
+              :options="field.options"
+              @input="handleInputOrChange(scope.$index, field.key, $event, shouldUseInputEvent(field.type))"
+              @change="handleInputOrChange(scope.$index, field.key, $event, shouldUseChangeEvent(field.type))"
+              v-bind:v-custom-directive="getCustomDirectiveParams(scope.row, field)"
+            >
+              <el-option
+                v-if="field.type === 'select'"
+                v-for="option in field.options"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+              ></el-option>
+            </component>
+          </el-form-item>
+        </template>
+      </el-table-column>
+    </el-table>
+  </el-form>
 </template>
 
 <script>
@@ -217,6 +221,17 @@ export default {
         // 其他需要传递的参数
       };
     },
+    validateForm() {
+      return new Promise((resolve, reject) => {
+        this.$refs.formRef.validate((valid) => {
+          if (valid) {
+            resolve(true);
+          } else {
+            reject(false);
+          }
+        });
+      });
+    }
   },
 };
 </script>
