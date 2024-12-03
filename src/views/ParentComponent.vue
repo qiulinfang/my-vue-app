@@ -4,7 +4,7 @@
     <itemList2 :config="formConfig" v-model="students" />
     {{ students }}
     <!-- 动态组件 -->
-    <componentISS />
+    <!-- <componentISS /> -->
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     const students = ref([
       { id: 1, name: "张三", age: 1 },
       { id: 2, name: "李四", age: 2 },
-      { id: 3, name: "王五", age: 3 },
+      { id: 3, name: "王五", age: 4 },
     ]);
 
     // 定义表单配置

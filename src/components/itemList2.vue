@@ -5,7 +5,7 @@
       :key="index"
       :prop="field.key"
       :label="field.label"
-      :width="field.width || 'auto'"
+      :width="getColumnWidth(field)"
     >
       <template #default="scope">
         <component
@@ -161,6 +161,27 @@ export default {
 
       // 返回根据字段类型生成的组件属性
       return props;
+    },
+    getColumnWidth(field) {
+      // 如果父组件没有传入 width，则根据输入组件类型设置默认宽度
+      if (field.width) {
+        return field.width;
+      }
+
+      // 根据输入组件类型设置默认宽度
+      switch (field.type) {
+        case 'text':
+        case 'textarea':
+          return 'auto'; // 文本输入框和文本区域默认宽度为 auto
+        case 'number':
+          return '100px'; // 数字输入框默认宽度为 100px
+        case 'select':
+          return '150px'; // 下拉选择框默认宽度为 150px
+        case 'date':
+          return '200px'; // 日期选择器默认宽度为 200px
+        default:
+          return 'auto'; // 默认宽度为 auto
+      }
     },
     //判断是否应使用输入事件
     shouldUseInputEvent(type) {
