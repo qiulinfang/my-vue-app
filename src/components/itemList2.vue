@@ -13,8 +13,9 @@
           v-bind="getComponentProps(scope.row, field)"
           v-model="scope.row[field.key]"
           :options="field.options"
-          @input="handleInputOrChange(scope.$index,field.key,$event,shouldUseInputEvent(field.type))"
-          @change="handleInputOrChange(scope.$index,field.key,$event,shouldUseChangeEvent(field.type))"
+          @input="handleInputOrChange(scope.$index, field.key, $event, shouldUseInputEvent(field.type))"
+          @change="handleInputOrChange(scope.$index, field.key, $event, shouldUseChangeEvent(field.type))"
+          v-bind:v-custom-directive="getCustomDirectiveParams(scope.row, field)"
         >
           <el-option
             v-if="field.type === 'select'"
@@ -109,7 +110,7 @@ export default {
         return acc;
       }, {});
     },
-    //根据类型获取相应的组件类型
+    // 根据类型获取相应的组件类型
     getComponentType(type) {
       switch (type) {
         case "text":
@@ -126,7 +127,7 @@ export default {
           return "el-input"; // 默认使用文本输入框组件
       }
     },
-    //根据行数据和字段配置获取组件的属性
+    // 根据行数据和字段配置获取组件的属性
     getComponentProps(row, field) {
       // 初始化一个空对象来存储组件属性
       const props = {};
@@ -167,7 +168,6 @@ export default {
       if (field.width) {
         return field.width;
       }
-
       // 根据输入组件类型设置默认宽度
       switch (field.type) {
         case 'text':
@@ -183,15 +183,15 @@ export default {
           return 'auto'; // 默认宽度为 auto
       }
     },
-    //判断是否应使用输入事件
+    // 判断是否应使用输入事件
     shouldUseInputEvent(type) {
       return ["text", "textarea"].includes(type);
     },
-    //判断是否应使用 change 事件。
+    // 判断是否应使用 change 事件
     shouldUseChangeEvent(type) {
       return ["number", "select", "date"].includes(type);
     },
-    //处理输入或更改事件的函数
+    // 处理输入或更改事件的函数
     handleInputOrChange(index, key, value, shouldUpdateImmediately) {
       // 根据 shouldUpdateImmediately 决定是否立即触发更新
       if (shouldUpdateImmediately) {
@@ -208,6 +208,19 @@ export default {
         this.localStudents = filteredStudents;
       }
     },
+    // 获取自定义指令的参数
+    getCustomDirectiveParams(row, field) {
+      // 根据需要返回自定义指令的参数
+      return {
+        row,
+        field,
+        // 其他需要传递的参数
+      };
+    },
   },
 };
 </script>
+
+<style scoped>
+/* 你的样式 */
+</style>
