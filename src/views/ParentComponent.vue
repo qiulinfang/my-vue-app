@@ -4,7 +4,7 @@
     <itemList2 :config="formConfig" v-model="students" />
     {{ students }}
     <!-- 动态组件 -->
-    <!-- <componentISS /> -->
+    <componentISS />
   </div>
 </template>
 

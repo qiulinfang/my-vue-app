@@ -12,23 +12,18 @@
           :is="getComponentType(field.type)"
           v-bind="getComponentProps(scope.row, field)"
           v-model="scope.row[field.key]"
-          @input="
-            handleInputOrChange(
-              scope.$index,
-              field.key,
-              $event,
-              shouldUseInputEvent(field.type)
-            )
-          "
-          @change="
-            handleInputOrChange(
-              scope.$index,
-              field.key,
-              $event,
-              shouldUseChangeEvent(field.type)
-            )
-          "
-        ></component>
+          :options="field.options"
+          @input="handleInputOrChange(scope.$index,field.key,$event,shouldUseInputEvent(field.type))"
+          @change="handleInputOrChange(scope.$index,field.key,$event,shouldUseChangeEvent(field.type))"
+        >
+          <el-option
+            v-if="field.type === 'select'"
+            v-for="option in field.options"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
+          ></el-option>
+        </component>
       </template>
     </el-table-column>
   </el-table>
@@ -154,7 +149,6 @@ export default {
         case "select":
           // 对于选择框类型，设置占位符和选项
           props.placeholder = field.placeholder;
-          props.options = field.options;
           break;
         case "date":
           // 对于日期类型，设置日期格式、值格式和占位符

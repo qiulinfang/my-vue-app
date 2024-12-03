@@ -4,13 +4,13 @@
 
     <!-- 选择要渲染的组件类型 -->
     <el-select v-model="selectedComponent" placeholder="请选择组件类型">
-      <el-option label="按钮" value="button"></el-option>
-      <el-option label="输入框" value="input"></el-option>
-      <el-option label="选择框" value="select"></el-option>
+      <el-option v-for="option in componentOptions" :key="option.value" :label="option.label" :value="option.value"></el-option>
     </el-select>
 
     <!-- 动态渲染组件 -->
-    <component :is="getComponentType(selectedComponent)" class="dynamic-component" />
+    <component :is="getComponentType(selectedComponent)" class="dynamic-component">
+      <el-option v-if="selectedComponent === 'select'" v-for="option in selectOptions" :key="option.value" :label="option.label" :value="option.value"></el-option>
+    </component>
 
     <!-- 操作按钮 -->
     <el-button @click="handleClick" style="margin-top: 10px;">点击我</el-button>
@@ -30,6 +30,20 @@ export default {
   },
   setup() {
     const selectedComponent = ref('button');
+
+    // 选择组件类型的选项
+    const componentOptions = [
+      { label: '按钮', value: 'button' },
+      { label: '输入框', value: 'input' },
+      { label: '选择框', value: 'select' }
+    ];
+
+    // 选择框的选项
+    const selectOptions = [
+      { label: '选项1', value: 'option1' },
+      { label: '选项2', value: 'option2' },
+      { label: '选项3', value: 'option3' }
+    ];
 
     // 根据选择的组件类型返回相应的组件名称
     const getComponentType = (type) => {
@@ -57,6 +71,8 @@ export default {
 
     return {
       selectedComponent,
+      componentOptions,
+      selectOptions,
       getComponentType,
       handleClick
     };
