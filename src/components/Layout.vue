@@ -30,6 +30,13 @@
           </template>
           <el-menu-item index="/daunju">产品管理</el-menu-item>
         </el-sub-menu>
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>通用组件</span>
+          </template>
+          <el-menu-item index="/extralist">extlist</el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-col>
     <el-col :span="21">
