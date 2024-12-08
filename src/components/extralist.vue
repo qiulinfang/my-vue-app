@@ -44,7 +44,29 @@
                         :key="option.value" :label="option.label" :value="option.value"></el-option>
                 </template>
             </el-table-column>
-
+            <!-- 输入框 -->
+            <hc-input v-if="extraItem.keyInputType === 3" :name="`dataList.${index}.value`"
+                :id="`extraForm_dataList.${index}.value`" :no-title="true" v-model="extraItem.value" input-style="lg"
+                :edit-type="getEditType(extraItem.checked)" :async-check-fun="[logicExtraValid, extraItem]"
+                :non-empty="extraItem.checked" :clearable="true" max-length="1024" show-word-limit="true"
+                v-cmp:extraList="[...formDiff, 'extraList', extraItem]"></hc-input>
+            <!-- 遍历 dataList，为每个 extraItem 创建输入框 -->
+            <div v-for="(extraItem, index) in dataList" :key="index">
+                <div class="w-40 vertical-center" :class="[isPackage ? 'w30' : '']"
+                    v-if="extraType === 'extraTypeValue'">
+                    <div v-for="langInfo in langList" :key="langInfo.key" v-show="langInfo.key === currentLang">
+                        <!-- 输入框 -->
+                        <hc-input v-if="extraItem.keyInputType === 3" :name="`dataList.${index}.value.${langInfo.key}`"
+                            :id="`extraForm_dataList.${index}.value.${langInfo.key}`" :no-title="true"
+                            v-model="extraItem.value[langInfo.key]" :non-empty="extraItem.checked" input-style="lg"
+                            show-word-limit="true" max-length="1024"
+                            :async-check-fun="[displayExtraValid, extraItem.value[langInfo.key], extraItem, [langInfo.key]]"
+                            pattern-tip="hu.vue.common.displayExtra.input.valid.tips"
+                            :edit-type="getEditType(extraItem.checked)" @hc-input-change="valueChange"
+                            v-cmp:extraList="[...formDiff, formDiffKey, extraItem, langInfo.key]"></hc-input>
+                    </div>
+                </div>
+            </div>
             <!-- 参数说明列 -->
             <el-table-column label="参数说明" min-width="40%">
                 <template #default="scope">

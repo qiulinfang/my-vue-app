@@ -10,6 +10,7 @@ declare module 'vue' {
     ComponentIs: typeof import('./src/components/componentIs.vue')['default']
     ComponentISS: typeof import('./src/components/componentISS.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']

@@ -131,7 +131,7 @@ export default {
           return "el-input"; // 默认使用文本输入框组件
       }
     },
-    // 根据行数据和字段配置获取组件的属性
+    // 根据行数据和字段配置获取组件的属性 
     getComponentProps(row, field) {
       // 初始化一个空对象来存储组件属性
       const props = {};
