@@ -37,6 +37,13 @@
           </template>
           <el-menu-item index="/extralist">extlist</el-menu-item>
         </el-sub-menu>
+        <el-sub-menu index="5">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>api执行顺序测试</span>
+          </template>
+          <el-menu-item index="/apiTest">api执行顺序测试</el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-col>
     <el-col :span="21">
