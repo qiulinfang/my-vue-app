@@ -1,7 +1,7 @@
 <template>
   <div class="button">
     <button>
-      <div class="button-content">
+      <div class="button-content" >
         <f-icon v-if="icon" :type="icon"></f-icon>
         <slot v-else name="icon" />
         <slot></slot>
@@ -13,7 +13,7 @@
 import {FIcon} from 'f-ui';
 export default {
   components: { FIcon },
-  props: { icon: String },
+  props: { icon: String ,shadow: String },
   data() {
     return {};
   },
@@ -24,3 +24,7 @@ export default {
   methods: {},
 };
 </script>
+
+<style scoped>
+@import '../styles/index.css'; 
+</style>

@@ -7,9 +7,9 @@
   </div>
 </template>
 <script>
-import { FIcon } from 'f-ui';
+import { FIcon} from 'f-ui';
 export default {
-  components: { FIcon },
+  components: { FIcon},
   data() {
     return {};
   },

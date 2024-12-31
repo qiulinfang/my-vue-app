@@ -7,19 +7,19 @@
     @change="handleChange"
     @keydown="handleKeydown"
   />
-  <fbutton icon="f-fanhui"> 
+  <span class="f-shadow-dark">sdfs</span>
+  <fbutton icon="f-fanhui" shadow="true"> 
     <template #icon>
       <f-icon type="f-fanhui" />
     </template>
     按钮
   </fbutton>
-  
   sdf
 </template>
 
 <script>
 import fbutton from '@/components/button/src/fbutton.vue'
-import { FIcon } from 'f-ui';
+import { FIcon} from 'f-ui';
 export default {
   components: {
     fbutton,

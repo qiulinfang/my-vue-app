@@ -10,7 +10,7 @@
       >
         <el-sub-menu index="1">
           <template #title>
-            <el-icon><location /></el-icon>
+            <f-icon type="f-caidan"></f-icon>
             <span>直播管理</span>
           </template>
           <el-menu-item index="/">产品包管理</el-menu-item>
@@ -18,31 +18,42 @@
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
-            <el-icon><location /></el-icon>
+            <f-icon type="f-caidan"></f-icon>
             <span>财务管理</span>
           </template>
           <el-menu-item index="/settings">系统设置</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="3">
           <template #title>
-            <el-icon><location /></el-icon>
+            <f-icon type="f-caidan"></f-icon>
             <span>内容管理</span>
           </template>
           <el-menu-item index="/daunju">产品管理</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="4">
           <template #title>
-            <el-icon><location /></el-icon>
+            <f-icon type="f-caidan"></f-icon>
             <span>通用组件</span>
           </template>
           <el-menu-item index="/extralist">extlist</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="5">
           <template #title>
-            <el-icon><location /></el-icon>
+            <f-icon type="f-caidan"></f-icon>
             <span>api执行顺序测试</span>
           </template>
           <el-menu-item index="/apiTest">api执行顺序测试</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="6">
+          <template #title>
+            <f-icon type="f-caidan"></f-icon>
+            <span>组件库</span>
+          </template>
+          <el-menu-item index="/icon"><f-icon type="f-caidan"></f-icon><span>coin</span></el-menu-item>
+          <el-menu-item index="/button"><f-icon type="f-caidan"></f-icon><span>button</span></el-menu-item>
+          <el-menu-item index="/container"><f-icon type="f-caidan"></f-icon><span>container</span></el-menu-item>
+          <el-menu-item index="/link"><f-icon type="f-caidan"></f-icon><span>link</span></el-menu-item>
+          <el-menu-item index="/text"><f-icon type="f-caidan"></f-icon><span>text</span></el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-col>
@@ -53,14 +64,15 @@
 
 </template>
 
-<script lang="ts" setup>
-
-
-
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+<script>
+import { FIcon} from 'f-ui';
+  export default {
+    components: {
+      FIcon
+    },
+  }
 </script>
+
+<style scoped>
+
+</style>

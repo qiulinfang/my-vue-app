@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/router"; // 引入路由配置
 import GlobalMethods from './plugins/globalMethods';
+import '@/styles/global.css';
 
 const app = createApp(App);
 

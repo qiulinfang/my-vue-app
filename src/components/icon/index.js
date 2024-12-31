@@ -1,2 +1,2 @@
-import FIcon from './src/icon.vue'
-export default FIcon
+import FIcon from './src/FIcon.vue'
+export {FIcon}

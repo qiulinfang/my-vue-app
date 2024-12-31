@@ -1,0 +1,50 @@
+:root {
+    --primary-color: #3498db;
+    --font-stack: Arial, sans-serif;
+    --f-border-radius: 0px;
+    --f-border-radius-small: 2px;
+    --f-border-radius-base: 4px;
+    --f-border-radius-round: 6px;
+    box-shadow: 10px 10px 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.f-button-shadow-base {
+    background-color: #4CAF50; /* 绿色背景 */
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* 边框投影 */
+  }
+  
+.f-button-shadow-base:hover {
+background-color: white;
+color: black;
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); /* 悬停时更强烈的边框投影 */
+}
+
+.f-shadow-none {
+    box-shadow: none; /* 没有阴影 */
+  }
+  
+.f-shadow-light {
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影 */
+}
+
+.f-shadow-lighter {
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 更轻微的阴影 */
+}
+
+.f-shadow-dark {
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* 强烈的阴影 */
+}
+
+.f-shadow-dark:hover {
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* 悬停时更强烈的阴影 */
+}

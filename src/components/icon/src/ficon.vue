@@ -1,6 +1,6 @@
 <template>
   <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-    <use :href="type"></use>
+    <use :href="_type"></use>
   </svg>
 </template>
 
@@ -28,7 +28,7 @@ export default {
     },
   },
   computed: {
-    type() {
+    _type() {
       return `#${this.type}`;
     },
   },
