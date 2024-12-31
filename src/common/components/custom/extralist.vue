@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { findFormElementByName } from "@/utils/util.js";
+import { findFormElementByName } from "@/common/utils/util.js";
 import {
     ElButton,
     ElInputNumber,

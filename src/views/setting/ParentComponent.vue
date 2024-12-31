@@ -58,8 +58,8 @@
 
 <script>
 import { ref } from "vue";
-import itemList2 from "../../components/custom/itemList2.vue";
-import componentISS from "../../components/custom/componentISS.vue";
+import itemList2 from "../../common/components/custom/itemList2.vue";
+import componentISS from "../../common/components/custom/componentISS.vue";
 export default {
   components: {
     itemList2,

@@ -5,7 +5,7 @@
 <script>
 import children from "./views/children.vue";
 import coin from "./views/coin.vue";
-import layout from "./components/custom/Layout.vue";
+import layout from "./common/components/custom/Layout.vue";
 
 export default {
   components: {

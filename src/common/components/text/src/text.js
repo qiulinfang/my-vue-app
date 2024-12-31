@@ -12,7 +12,6 @@ export const textProps = {
    */
   size: {
     type: String,
-    values: componentSizes,
     default: "",
   },
   /**

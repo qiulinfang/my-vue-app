@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import iconTest1 from "@/components/icon/demos/iconTest1.vue";
+import iconTest1 from "@/common/components/icon/demos/iconTest1.vue";
 
 export default {
   components: { iconTest1 },

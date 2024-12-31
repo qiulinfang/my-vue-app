@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import fbutton from '@/components/button/src/fbutton.vue'
+import fbutton from '@/common/components/button/src/fbutton.vue'
 import { FIcon} from 'f-ui';
 export default {
   components: {
