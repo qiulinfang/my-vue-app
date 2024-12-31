@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/common/components/custom/Layout.vue";
-import Dashboard from "@/views/Dashboard.vue"; // 假设这是你的首页组件
-import Users from "@/views/Users.vue"; // 用户管理页面组件
-import duanju from "@/views/DuanJu.vue";
+import Dashboard from "@/views/others/Dashboard.vue"; // 假设这是你的首页组件
+import Users from "@/views/others/Users.vue"; // 用户管理页面组件
+import duanju from "@/views/others/DuanJu.vue";
 const routes = [
   {
     path: "/Layout",
@@ -16,22 +16,22 @@ const routes = [
   {
     path: '/daunju',
     name: 'Daunju',
-    component: () => import('@/views/DuanJu.vue')
+    component: () => import('@/views/others/DuanJu.vue')
   },
   {
     path: '/settings',
     name: 'settings',
-    component: () => import('@/views/setting/ParentComponent.vue')
+    component: () => import('@/views/others/setting/ParentComponent.vue')
   },
   {
     path: '/extralist',
     name: 'extralist',
-    component: () => import('@/views/extralist.vue')
+    component: () => import('@/views/others/extralist.vue')
   },
   {
     path: '/APITest',
     name: 'APITest',
-    component: () => import('@/views/APITest.vue')
+    component: () => import('@/views/others/APITest.vue')
   },
   {
     path: '/icon',

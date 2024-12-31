@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import { fbutton } from 'f-ui';
+import { FButton } from 'f-ui';
 export default {
     components: {
-        fbutton
+      FButton
     }
 }
 </script>

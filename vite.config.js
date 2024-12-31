@@ -8,10 +8,11 @@ export default defineConfig({
   resolve: {
     alias: { 
       "@": resolve(__dirname, "src"),
+      "@utils": '/src/common/utils',
       'f-ui': '/src/common/components'
      }, //把 src 的别名设置为 @}
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'], // 包含常见扩展名和 .vue
   },
-  extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'], // 包含常见扩展名和 .vue
   optimizeDeps: {
     force: true // 强制进行依赖预构建
   },

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import extralist from "../common/components/custom/extralist.vue";
-import multilanguage from "../common/components/custom/multilanguage.vue";
-import vmodeltest from "../common/components/custom/vmodeltest.vue";
+import extralist from "../../common/components/custom/extralist.vue";
+import multilanguage from "../../common/components/custom/multilanguage.vue";
+import vmodeltest from "../../common/components/custom/vmodeltest.vue";
 export default {
   name: "sdfsdfsd",
   components: {

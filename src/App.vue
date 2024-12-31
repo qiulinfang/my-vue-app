@@ -3,8 +3,8 @@
 </template>
   
 <script>
-import children from "./views/children.vue";
-import coin from "./views/coin.vue";
+import children from "./views/others/children.vue";
+import coin from "./views/others/coin.vue";
 import layout from "./common/components/custom/Layout.vue";
 
 export default {
