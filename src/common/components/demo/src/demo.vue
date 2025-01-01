@@ -1,13 +1,8 @@
 <template>
-    <span>
-        <slot></slot>
-    </span>
+
 </template>
 <script>
-import { textProps } from './text.js';
 export default {
-    name: 'FText',
-    props: textProps,
     data() {
         return {
         }

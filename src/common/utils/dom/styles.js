@@ -4,11 +4,11 @@
  * @returns {Array} - 转换后的类名数组
  */
 export const classNameToArray = (cls = "") =>
-  cls.split(" ").filter((item) => !!item.trim());
+  cls.split(" ").filter(Boolean); // ilter(Boolean)会过滤掉数组中的所有假值（包括空字符串 ""、null、undefined、0、false 等）
 
 /**
  * 检查元素是否包含特定类名
- * @param {Element} el - DOM元素
+ * @param {Element} el - DOM元素 /  this.$refs.xxx.$el
  * @param {string} cls - 类名
  * @returns {boolean} - 如果元素包含类名则返回true，否则返回false
  */
@@ -47,15 +47,15 @@ export const removeClass = (el, cls) => {
 export const getStyle = (element, styleName) => {
   if (!isClient || !element || !styleName) return "";
 
-  let key = camelize(styleName);
-  if (key === "float") key = "cssFloat";
+  let key = camelize(styleName);  // 将字符串转换为驼峰命名 
+  if (key === "float") key = "cssFloat";  
   try {
-    const style = element.style[key];
+    const style = element.style[key];  // 获取元素的内联样式
     if (style) return style;
-    const computed = document.defaultView?.getComputedStyle(element, "");
-    return computed ? computed[key] : "";
+    const computed = document.defaultView?.getComputedStyle(element, ""); // getComputedStyle() 方法返回一个对象，该对象在应用活动样式表并解析这些值可能包含的任何基本计算后报告元素的所有CSS属性的值
+    return computed ? computed[key] : "";    
   } catch {
-    return element.style[key];
+    return element.style[key];  // 如果获取样式失败，返回元素的内联样式
   }
 };
 
@@ -69,12 +69,12 @@ export const setStyle = (element, styleName, value) => {
   if (!element || !styleName) return;
 
   if (isObject(styleName)) {
-    entriesOf(styleName).forEach(([prop, value]) =>
-      setStyle(element, prop, value)
+    entriesOf(styleName).forEach(([prop, value]) =>  // entries() 方法返回一个数组的迭代对象，该对象包含数组的键值对 (key/value)。
+      setStyle(element, prop, value)  // 递归调用setStyle
     );
   } else {
-    const key = camelize(styleName);
-    element.style[key] = value;
+    const key = camelize(styleName);  
+    element.style[key] = value; // 设置元素的内联样式 
   }
 };
 
@@ -87,7 +87,7 @@ export const removeStyle = (element, style) => {
   if (!element || !style) return;
 
   if (isObject(style)) {
-    keysOf(style).forEach((prop) => removeStyle(element, prop));
+    keysOf(style).forEach((prop) => removeStyle(element, prop));  // 递归调用removeStyle  
   } else {
     setStyle(element, style, "");
   }
@@ -101,7 +101,7 @@ export const removeStyle = (element, style) => {
  */
 export function addUnit(value, defaultUnit = "px") {
   if (!value) return "";
-  if (isNumber(value) || isStringNumber(value)) {
+  if (isNumber(value) || isStringNumber(value)) { // isStringNumber()判断是否是数字字符串
     return `${value}${defaultUnit}`;
   } else if (isString(value)) {
     return value;

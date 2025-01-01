@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/common/components/custom/Layout.vue";
-import Dashboard from "@/views/others/Dashboard.vue"; // 假设这是你的首页组件
-import Users from "@/views/others/Users.vue"; // 用户管理页面组件
-import duanju from "@/views/others/DuanJu.vue";
+import Dashboard from "@/docs/others/Dashboard.vue"; // 假设这是你的首页组件
+import Users from "@/docs/others/Users.vue"; // 用户管理页面组件
+import duanju from "@/docs/others/DuanJu.vue";
 const routes = [
   {
     path: "/Layout",
@@ -16,47 +16,52 @@ const routes = [
   {
     path: '/daunju',
     name: 'Daunju',
-    component: () => import('@/views/others/DuanJu.vue')
+    component: () => import('@/docs/others/DuanJu.vue')
   },
   {
     path: '/settings',
     name: 'settings',
-    component: () => import('@/views/others/setting/ParentComponent.vue')
+    component: () => import('@/docs/others/setting/ParentComponent.vue')
   },
   {
     path: '/extralist',
     name: 'extralist',
-    component: () => import('@/views/others/extralist.vue')
+    component: () => import('@/docs/others/extralist.vue')
   },
   {
     path: '/APITest',
     name: 'APITest',
-    component: () => import('@/views/others/APITest.vue')
+    component: () => import('@/docs/others/APITest.vue')
   },
   {
     path: '/icon',
     name: 'icon',
-    component: () => import('@/views/icon/index.vue')
+    component: () => import('@/docs/icon/index.vue')
   },
   {
     path: '/button',
     name: 'button',
-    component: () => import('@/views/button/index.vue')
+    component: () => import('@/docs/button/index.vue')
   },
   {
     path: '/container',
     name: 'container',
-    component: () => import('@/views/container/index.vue')
+    component: () => import('@/docs/container/index.vue')
   },
   {
     path: '/link',
     name: 'link',
-    component: () => import('@/views/link/index.vue')
+    component: () => import('@/docs/link/index.vue')
   },
   {
     path: '/text',
     name: 'text',
-    component: () => import('@/views/text/index.vue')
+    component: () => import('@/docs/text/index.vue')
+  },
+  {
+    path: '/scrollbar',
+    name: 'scrollbar',
+    component: () => import('@/docs/scrollbar/index.vue')
   },
 ];
 

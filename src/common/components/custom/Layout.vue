@@ -54,6 +54,7 @@
           <el-menu-item index="/container"><f-icon type="f-caidan"></f-icon><span>container</span></el-menu-item>
           <el-menu-item index="/link"><f-icon type="f-caidan"></f-icon><span>link</span></el-menu-item>
           <el-menu-item index="/text"><f-icon type="f-caidan"></f-icon><span>text</span></el-menu-item>
+          <el-menu-item index="/scrollbar"><f-icon type="f-caidan"></f-icon><span>scrollbar</span></el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-col>

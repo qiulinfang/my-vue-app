@@ -52,7 +52,7 @@ declare module 'vue' {
     FMain: typeof import('./src/common/components/container/src/FMain.vue')['default']
     Icon: typeof import('./src/common/components/input copy/src/icon.vue')['default']
     IconTest1: typeof import('./src/common/components/icon/demos/iconTest1.vue')['default']
-    Input: typeof import('./src/common/components/demo/src/input.vue')['default']
+    Input: typeof import('./src/common/components/demo/src/demo.vue')['default']
     ItemList: typeof import('./src/common/components/custom/ItemList.vue')['default']
     ItemList2: typeof import('./src/common/components/custom/itemList2.vue')['default']
     ItemList3: typeof import('./src/common/components/custom/itemList3.vue')['default']
