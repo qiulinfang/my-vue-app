@@ -72,6 +72,9 @@
               ><f-icon type="f-caidan"></f-icon
               ><span>scrollbar</span></el-menu-item
             >
+            <el-menu-item index="/transition"
+              ><f-icon type="f-caidan"></f-icon><span>transition</span></el-menu-item
+            >
           </el-sub-menu>
         </el-menu>
       </el-col>

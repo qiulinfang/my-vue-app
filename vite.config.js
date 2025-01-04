@@ -4,7 +4,6 @@ import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import AutoImport from "unplugin-auto-import/vite";
 import { resolve } from "path";
-import plugins from "~/common/plugins";
 export default defineConfig({
   resolve: {
     alias: { 

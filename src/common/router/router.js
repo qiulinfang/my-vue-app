@@ -68,6 +68,11 @@ const routes = [
     name: 'test',
     component: () => import('@/docs/test/index.vue')
   },
+  {
+    path: '/transition',
+    name: 'transition',
+    component: () => import('@/docs/transition/index.vue')
+  },
 ];
 
 const router = createRouter({

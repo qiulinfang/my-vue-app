@@ -6,19 +6,36 @@
   <FadeTransition>
     <p v-if="show">hello</p>
   </FadeTransition>
-  <f-button>Button</f-button>
+  <button @click="addItem">Add Item</button>
+  <button @click="removeItem">Remove Item</button>
+  <button @click="shuffleItems">Shuffle Items</button>
+  <ListTransition :items="items"></ListTransition>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { FadeTransition,SlideTransition, FButton } from "f-ui";
+import { FadeTransition, SlideTransition, ListTransition, FButton } from "f-ui";
+const items = ref([
+  { id: 1, text: "Item 1" },
+  { id: 2, text: "Item 2" },
+  { id: 3, text: "Item 3" },
+]);
+const addItem = () => {
+  const newItem = { id: Date.now(), text: `Item ${items.value.length + 1}` };
+  items.value.push(newItem);
+};
 
+const removeItem = () => {
+  items.value.pop();
+};
+
+const shuffleItems = () => {
+  items.value = [...items.value].sort(() => Math.random() - 0.5);
+};
 const show = ref(false);
 </script>
 
 <style>
-
-
 .wave-button {
   padding: 10px 20px;
   font-size: 16px;
