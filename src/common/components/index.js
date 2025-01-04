@@ -6,3 +6,4 @@ export * from "./container/index";
 export * from "./link/index";
 export * from "./text/index";
 export * from "./scrollbar/index";
+export * from "./transition/index";

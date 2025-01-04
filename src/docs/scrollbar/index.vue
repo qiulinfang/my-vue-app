@@ -5,7 +5,7 @@
       :maxHeight="800"
       @scroll="handleScroll"
       v-wave>
-      <p v-for="i in 100" :key="i">{{ i }}</p>        
+      <p v-for="i in 100" :key="i">{{ i }}</p>
     </f-scrollbar>
 </template>
 

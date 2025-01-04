@@ -1,32 +1,23 @@
 <template>
   <button @click="show = !show" v-wave class="wave-button">Toggle</button>
-  <Transition name="slide-fade">
+  <SlideTransition>
     <p v-if="show">hello</p>
-  </Transition>
-  <input v-focus type="text" placeholder="Enter text" />
+  </SlideTransition>
+  <FadeTransition>
+    <p v-if="show">hello</p>
+  </FadeTransition>
+  <f-button>Button</f-button>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { FadeTransition,SlideTransition, FButton } from "f-ui";
 
 const show = ref(false);
 </script>
 
 <style>
-/* 进入动画 */
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
 
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
 
 .wave-button {
   padding: 10px 20px;

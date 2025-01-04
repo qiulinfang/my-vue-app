@@ -29,15 +29,6 @@ export default {
 
         h(
             FText,
-            {
-                directives: [
-                  {
-                    name: 'focus',  // 指令名称
-                  }
-                ],
-                color:'red',
-                fontSize:'14px'
-            },
             [
               h('p', 'First paragraph'),
               h('p', 'Second paragraph'),
