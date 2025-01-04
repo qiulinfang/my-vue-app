@@ -1,11 +1,13 @@
 import { focus } from './focus';
 import { click } from './click';
 import { diff } from './diff';
+import wave from './wave';
 
 const directives = {
     focus,
     click,
-    diff
+    diff,
+    wave
 };
 
 export default {

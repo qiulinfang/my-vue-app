@@ -2,13 +2,6 @@ import { h, ref } from 'vue'
 import { FText } from 'f-ui'
 import { withDirectives } from 'vue'
 
-// 自定义指令
-const focus = {
-  mounted(el, binding) {
-    el.focus()
-  }
-};
-
 // 使用 `withDirectives` 应用 `v-pin` 指令
 const vnode = withDirectives(h('input', { class: 'my-element' }), [
   [focus, true]  // 指令的绑定参数
@@ -37,17 +30,21 @@ export default {
         h(
             FText,
             {
+                directives: [
+                  {
+                    name: 'focus',  // 指令名称
+                  }
+                ],
                 color:'red',
                 fontSize:'14px'
             },
             [
-                h('p', 'First paragraph'),
-                h('p', 'Second paragraph'),
-                h('div', [
-                  h('span', 'Nested span inside div')
-                ])
-              ]
-                
+              h('p', 'First paragraph'),
+              h('p', 'Second paragraph'),
+              h('div', [
+                h('span', 'Nested span inside div')
+              ])
+            ]
         ),
 
         vnode,
