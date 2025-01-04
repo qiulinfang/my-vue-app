@@ -1,3 +1,4 @@
+import { isString, isNumber, isUndefined, isObject, isBoolean, isStringNumber, isEmpty, isElement } from "../type";
 /**
  * 将类名字符串转换为数组
  * @param {string} cls - 类名字符串，默认为空
@@ -99,7 +100,7 @@ export const removeStyle = (element, style) => {
  * @param {string} defaultUnit - 默认单位
  * @returns {string} - 带单位的字符串
  */
-export function addUnit(value, defaultUnit = "px") {
+export const addUnit = function(value, defaultUnit = "px") {
   if (!value) return "";
   if (isNumber(value) || isStringNumber(value)) { // isStringNumber()判断是否是数字字符串
     return `${value}${defaultUnit}`;

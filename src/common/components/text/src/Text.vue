@@ -1,6 +1,8 @@
 <template>
-    <span>
+    <span :style="{color: color, fontSize: fontSize}">
         <slot></slot>
+        <slot name="icon"></slot>
+        <slot name="extra"></slot>
     </span>
 </template>
 <script>

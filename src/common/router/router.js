@@ -56,7 +56,7 @@ const routes = [
   {
     path: '/text',
     name: 'text',
-    component: () => import('@/docs/text/index.vue')
+    component: () => import('@/docs/text/index.js')
   },
   {
     path: '/scrollbar',

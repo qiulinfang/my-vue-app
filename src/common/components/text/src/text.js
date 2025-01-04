@@ -31,4 +31,12 @@ export const textProps = {
     type: String,
     default: "span",
   },
+  color: {
+    type: String,
+    default: "",
+  },
+  fontSize: {
+    type: String,
+    default: "",
+  },
 };
