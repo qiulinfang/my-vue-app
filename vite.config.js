@@ -4,13 +4,15 @@ import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import AutoImport from "unplugin-auto-import/vite";
 import { resolve } from "path";
+import plugins from "~/common/plugins";
 export default defineConfig({
   resolve: {
     alias: { 
       "@": resolve(__dirname, "src"),
       "@utils": '/src/common/utils',
       "@styles": '/src/common/styles',
-      'f-ui': '/src/common/components'
+      'f-ui': '/src/common/components',
+      '@plugins': '/src/common/plugins',
      }, //把 src 的别名设置为 @}
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'], // 包含常见扩展名和 .vue
   },

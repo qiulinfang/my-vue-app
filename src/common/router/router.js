@@ -63,6 +63,11 @@ const routes = [
     name: 'scrollbar',
     component: () => import('@/docs/scrollbar/index.vue')
   },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import('@/docs/test/index.vue')
+  },
 ];
 
 const router = createRouter({

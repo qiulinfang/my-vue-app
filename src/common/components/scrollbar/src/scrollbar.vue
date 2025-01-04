@@ -54,7 +54,6 @@ const wrapKls = computed(() => {
 const wrapStyle = computed(() => {
   const style = {}
   if (props.height) style.height = addUnit(props.height)
-  console.log(style.height)
   if (props.maxHeight) style.maxHeight = addUnit(props.maxHeight)
   return [props.wrapStyle, style]
 })

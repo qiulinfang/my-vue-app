@@ -1,4 +1,4 @@
-function findDifferences(obj1, obj2, path = '') {
+export const diff = function(obj1, obj2, path = '') {
   const differences = [];
 
   function dfsTraverse(data1, data2, currentPath) {
@@ -51,19 +51,19 @@ function findDifferences(obj1, obj2, path = '') {
 }
 
 // 示例用法
-const obj1 = [
-  { a: 1, b: [2, 3, { c: 4 }] },
-  5,
-  { d: { e: 6, f: [7, 8] }, g: 9 },
-  [10, 11, { h: 12 }]
-];
+// const obj1 = [
+//   { a: 1, b: [2, 3, { c: 4 }] },
+//   5,
+//   { d: { e: 6, f: [7, 8] }, g: 9 },
+//   [10, 11, { h: 12 }]
+// ];
 
-const obj2 = [
-  { a: 1, b: [2, 3, { c: 5 }] }, // c 的值不同
-  5,
-  { d: { e: 6, f: [7, 9] }, g: 9 }, // f 数组中第二个元素不同
-  [10, 11, { h: 13 }] // h 的值不同
-];
+// const obj2 = [
+//   { a: 1, b: [2, 3, { c: 5 }] }, // c 的值不同
+//   5,
+//   { d: { e: 6, f: [7, 9] }, g: 9 }, // f 数组中第二个元素不同
+//   [10, 11, { h: 13 }] // h 的值不同
+// ];
 
-const differences = findDifferences(obj1, obj2);
-console.log(differences);
+// const differences = findDifferences(obj1, obj2);
+// console.log(differences);

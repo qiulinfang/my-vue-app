@@ -44,6 +44,7 @@
               <span>api执行顺序测试</span>
             </template>
             <el-menu-item index="/apiTest">api执行顺序测试</el-menu-item>
+            <el-menu-item index="/test">test</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="6">
             <template #title>

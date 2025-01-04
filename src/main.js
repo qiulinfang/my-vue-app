@@ -3,23 +3,12 @@ import App from "./App.vue";
 import router from "@/common/router/router"; // 引入路由配置
 import GlobalMethods from '@/common/plugins/globalMethods';
 import '@/common/styles/global.css';
-
+import plugins from '@/common/plugins';
+import directives from '@/common/directives';
 const app = createApp(App);
 
-app.directive("click-log", {
-  // 当被绑定的元素插入到 DOM 中时……
-  mounted: function (el, binding, vnode) {
-    console.log(el);
-    el.addEventListener("click", function () {
-      console.log(binding.value);
-    });
-  },
-});
-// 如果需要全局注册特定的功能，如 MessageBox、Message、Notification
-import { ElMessageBox, ElMessage, ElNotification } from 'element-plus';
-app.config.globalProperties.$msgbox = ElMessageBox;
-app.config.globalProperties.$message = ElMessage;
-app.config.globalProperties.$notify = ElNotification;
+plugins.install(app);
+directives.install(app);
 
 app.directive("compare-numbers", {
   // 当被绑定的元素插入到 DOM 中时……
@@ -31,12 +20,6 @@ app.directive("compare-numbers", {
   },
 });
 
-app.directive("focus", {
-  // 当被绑定的元素插入到 DOM 中时……
-  mounted: function (el, binding) {
-    el.focus(); 
-  },
-});
 
 app.use(router);
 // 注册插件
