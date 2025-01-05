@@ -6,7 +6,7 @@
                 "src/assets/*"
             ],
             "~components/*": [
-                "src/common/components/*"
+                "src/common/baseComponents/*"
             ],
             "~locales/*": [
                 "src/locales/*"

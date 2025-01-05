@@ -6,7 +6,7 @@
 
 <script setup>
 import { computed } from "vue";
-import layout from "./common/components/custom/Layout.vue";
+import layout from "./common/baseComponents/custom/Layout.vue";
 import { useNamespace } from "@utils";
 const ns = useNamespace("app");
 const containerKls = computed(() => {

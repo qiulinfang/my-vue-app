@@ -10,7 +10,7 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
       "@utils": '/src/common/utils',
       "@styles": '/src/common/styles',
-      'f-ui': '/src/common/components',
+      'f-ui': '/src/common/baseComponents',
       '@plugins': '/src/common/plugins',
      }, //把 src 的别名设置为 @}
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'], // 包含常见扩展名和 .vue
