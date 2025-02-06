@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Layout from "@/common/components/custom/Layout.vue";
+import Layout from "@/common/baseComponents/custom/Layout.vue";
 import Dashboard from "@/docs/others/Dashboard.vue"; // 假设这是你的首页组件
 import Users from "@/docs/others/Users.vue"; // 用户管理页面组件
 import duanju from "@/docs/others/DuanJu.vue";
