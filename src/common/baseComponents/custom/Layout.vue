@@ -1,7 +1,7 @@
 <template>
   <div :class="containerKls">
     <el-row ref="layoutRef" :class="layoutKls">
-      <el-col :span="3">
+      <el-col :span="3" class="menu-col">
         <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
@@ -78,7 +78,7 @@
           </el-sub-menu>
         </el-menu>
       </el-col>
-      <el-col :span="21">
+      <el-col :span="21" class="content-col">
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -101,13 +101,28 @@ const layoutKls = computed(() => {
 <style lang="scss" scoped>
 @use "@styles/mixins.scss" as *;
 @include b(layout) {
-  position: absolute;
+  position: relative;
   height: 100vh;
+  display: flex;
 
-  @include b(container) 
-  {
+  @include b(container) {
     flex: 0 0 200px; /* 固定宽度 */
     height: 100%; /* 占满容器高度 */
+  }
+
+  .menu-col {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px; /* 固定宽度 */
+    height: 100vh; /* 设置为屏幕视口高度 */
+    overflow-y: auto; /* 如果内容超出高度，显示滚动条 */
+  }
+
+  .content-col {
+    margin-left: 200px; /* 留出菜单栏的宽度 */
+    height: 100vh; /* 设置为屏幕视口高度 */
+    overflow-y: hidden; /* 禁止滚动 */
   }
 }
 </style>
