@@ -4,24 +4,16 @@ import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import AutoImport from "unplugin-auto-import/vite";
 import { resolve } from "path";
+
 export default defineConfig({
-  resolve: {
-    alias: { 
-      "@": resolve(__dirname, "src"),
-      "@utils": '/src/common/utils',
-      "@styles": '/src/common/styles',
-      'f-ui': '/src/common/baseComponents',
-      '@plugins': '/src/common/plugins',
-     }, //把 src 的别名设置为 @}
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'], // 包含常见扩展名和 .vue
-  },
+  // define: {
+  //   __DEBUG__: !isProduction, // 开发模式下为 true，生产模式下为 false
+  //   API_BASE_URL: isProduction
+  //     ? JSON.stringify('https://api.example.com')
+  //     : JSON.stringify('http://localhost:3000'),
+  // },
   optimizeDeps: {
     force: true // 强制进行依赖预构建
-  },
-  server: {
-    host: true // 监听所有地址
-    // 或者
-    // host: '0.0.0.0' // 明确指定监听所有地址
   },
   plugins: [
     vue(),
@@ -37,4 +29,20 @@ export default defineConfig({
       dts: true, // 同样适用于TypeScript项目
     }),
   ],
+  resolve: {
+    alias: { 
+      "@": resolve(__dirname, "src"),
+      "@utils": '/src/common/utils',
+      "@styles": '/src/common/styles',
+      'f-ui': '/src/common/baseComponents',
+      '@plugins': '/src/common/plugins',
+    }, //把 src 的别名设置为 @}
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'], // 包含常见扩展名和 .vue
+  },
+  server: {
+    host: 'localhost', // 监听所有地址
+    open: true, // 自动打开浏览器
+    // 或者
+    // host: '0.0.0.0' // 明确指定监听所有地址
+  },
 });

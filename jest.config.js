@@ -26,7 +26,7 @@ const config = {
   },
   testMatch: [
     // 测试文件匹配规则
-    "**/*.test.js",
+    "**/xxx.test.js",
   ],
   // ... 其他 Jest 配置
 };
