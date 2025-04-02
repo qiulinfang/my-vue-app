@@ -73,6 +73,11 @@ const routes = [
     name: 'transition',
     component: () => import('@/docs/transition/index.vue')
   },
+  {
+    path: '/table',
+    name: 'table',
+    component: () => import('@/docs/table/index.vue')
+  },
 ];
 
 const router = createRouter({

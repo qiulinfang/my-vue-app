@@ -1,2 +1,2 @@
-import FLink from './src/index.vue';
-export {FLink};
+import FTable from './src/table.vue';
+export {FTable};
