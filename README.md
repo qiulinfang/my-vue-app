@@ -4,8 +4,3 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
 # my-vue-app
-
-
-git config --global http.proxy 127.0.0.1:7897
-git config --global https.proxy 127.0.0.1:7897
-git config --global --unset http.proxy     

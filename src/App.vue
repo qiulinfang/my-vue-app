@@ -1,28 +1,48 @@
 <template>
-  <div :class="containerKls">
-    <layout></layout>
-  </div>
+  <layout></layout>
 </template>
+  
+<script>
+import children from "./views/children.vue";
+import coin from "./views/coin.vue";
+import direct from "./views/direct.vue"; 
+import layout from "./views/Layout.vue";
 
-<script setup>
-import { computed } from "vue";
-import layout from "./common/baseComponents/custom/Layout.vue";
-import { useNamespace } from "@utils";
-const ns = useNamespace("app");
-const containerKls = computed(() => {
-  return [ns.b("container")];
-});
+export default {
+  components: {
+    children,
+    coin,
+    direct,
+    layout
+  },
+  data() {
+    return {
+      tableData: [
+        {
+          date: "2016-05-03",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+        {
+          date: "2016-05-02",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+        {
+          date: "2016-05-04",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+        {
+          date: "2016-05-01",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+      ],
+    };
+  },
+};
 </script>
-<style lang="scss" scoped>
-@use '@styles/mixins.scss' as *;
-@include b(app) {
-  height: 100vh;
-  background-color: #f0f0f0;
-
-  @include b(container) {
-    height: 100%;
-    background-color: #f0f0f0;
-
-  }
-}
+  
+<style>
 </style>
