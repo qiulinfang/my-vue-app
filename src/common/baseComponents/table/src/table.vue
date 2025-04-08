@@ -1,9 +1,10 @@
 <template>
+  
   <div class="multi-table-wrapper">
     <div class="table-controls" v-if="showControls">
       <input type="text" v-model="searchTerm" placeholder="搜索表格..." @input="onSearchInput" class="search-input"/>
     </div>
-
+    <slot name="controls"></slot>
     <div class="table-container">
       <table class="multi-table">
         <thead>
@@ -47,7 +48,8 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    <slot name="controls"></slot>
+  </div>
 
     <div class="pagination-controls" v-if="totalPages > 1 && !loading">
       <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">上一页</button>
