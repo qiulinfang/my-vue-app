@@ -3,13 +3,12 @@ import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
-
-
+import path from 'path'; // 确保导入了 path 模块
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@images': './src/assets',
+      '@': path.resolve(__dirname, './src'), 
     },
   },
   plugins: [

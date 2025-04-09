@@ -13,6 +13,8 @@
     "babel": "^5.8.38",
     "element-plus": "^2.8.2",
     "esbuild": "^0.23.1",
+    "pinia": "^3.0.1",
+    "sass-embedded": "^1.86.3",
     "vue": "^3.4.37",
     "vue-router": "^4.0.13"
   },
