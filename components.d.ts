@@ -24,8 +24,10 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Layout: typeof import('./src/components/layout/Layout.vue')['default']
+    Link: typeof import('./src/components/layout/Link.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./src/components/layout/Sidebar.vue')['default']
+    SidebarItem: typeof import('./src/components/layout/SidebarItem.vue')['default']
   }
 }

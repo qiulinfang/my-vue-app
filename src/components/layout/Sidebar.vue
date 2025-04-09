@@ -1,85 +1,82 @@
+// src/components/layout/Sidebar.vue
 <template>
-    <el-scrollbar wrap-class="scrollbar-wrapper"> <el-menu
-        :default-active="activeMenu"
-        class="el-menu-vertical-demo"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
-        router  
-        :collapse="isCollapse" 
-      >
-        <el-menu-item index="/dashboard">
-          <el-icon><HomeFilled /></el-icon>
-          <span>首页</span>
-        </el-menu-item>
-  
-        <el-sub-menu index="/management">
-          <template #title>
-            <el-icon><Setting /></el-icon>
-            <span>系统管理</span>
-          </template>
-          <el-menu-item index="/management/users">用户管理</el-menu-item>
-          <el-menu-item index="/management/roles">角色管理</el-menu-item>
-        </el-sub-menu>
-  
-         <el-menu-item index="/products">
-          <el-icon><Goods /></el-icon>
-          <span>商品管理</span>
-        </el-menu-item>
-  
-        </el-menu>
-    </el-scrollbar>
-  </template>
-  
-  <script setup>
-  import { computed, ref } from 'vue';
-  import { useRoute } from 'vue-router';
-  import {
-    ElMenu,
-    ElMenuItem,
-    ElSubMenu,
-    ElIcon,
-    ElScrollbar
-  } from 'element-plus';
-  import { HomeFilled, Setting, Goods } from '@element-plus/icons-vue'; // 引入图标
-  
-  const route = useRoute();
-  
-  // 计算当前激活的菜单项（基于当前路由）
-  const activeMenu = computed(() => {
-    const { meta, path } = route;
-    // 如果路由设置了 activeMenu，优先使用
-    if (meta.activeMenu) {
-      return meta.activeMenu;
-    }
-    return path;
-  });
-  
-  // 控制菜单是否折叠（如果需要折叠功能）
-  const isCollapse = ref(false); 
-  // toggleCollapse() { isCollapse.value = !isCollapse.value } 
-  // 你可以通过父组件或 Pinia store 控制 isCollapse 的值
-  
-  </script>
-  
-  <style scoped>
-  .el-menu {
-    border-right: none; /* 移除默认的右边框 */
-    height: 100%; /* 菜单填满侧边栏高度 */
+  <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-menu
+      :default-active="activeMenu"
+      class="el-menu-vertical-demo"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      :collapse="isCollapse"
+      :unique-opened="true" mode="vertical"
+    >
+      <sidebar-item
+        v-for="route in menuRoutes"
+        :key="route.path"
+        :item="route"
+        :base-path="route.path" />
+    </el-menu>
+  </el-scrollbar>
+</template>
+
+<script setup>
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { ElMenu, ElScrollbar } from 'element-plus';
+import SidebarItem from './SidebarItem.vue'; // 引入递归菜单项组件
+// import { routes } from '@/router'; // 如果路由是静态导入的
+import router from '@/router'; // 导入 router 实例以获取动态添加的路由
+
+const route = useRoute();
+
+// 获取需要在菜单中显示的路由
+// 注意：这里直接用了 router.options.routes，这可能只包含初始路由。
+// 如果你的路由是动态添加的 (addRoute)，你需要从其他地方获取完整的路由表，
+// 例如 Pinia store 或者直接使用 router.getRoutes() 并进行处理。
+// 假设你的布局路由都在 asyncRoutes 中，并且已添加到 router 实例
+const menuRoutes = computed(() => {
+  // router.getRoutes() 获取当前所有注册的路由记录
+  // 你需要根据你的路由结构进行过滤，通常是找到 path: '/' 的那个布局路由下的 children
+  const layoutRoute = router.getRoutes().find(r => r.path === '/' && r.component?.name === 'Layout'); // 假设你的 Layout 组件有 name: 'Layout'
+  // 或者直接使用导入的 asyncRoutes (如果你的路由不是动态根据权限生成的)
+  // import { asyncRoutes } from '@/router' // 如果直接用这个
+  // return asyncRoutes;
+  return layoutRoute ? layoutRoute.children : []; // 返回布局路由的子路由作为菜单来源
+});
+
+// 计算当前激活的菜单项
+const activeMenu = computed(() => {
+  const { meta, path } = route;
+  if (meta.activeMenu) { // 允许在路由 meta 中手动指定高亮的菜单路径
+    return meta.activeMenu;
   }
-  
-  /* 修复折叠时文字不消失的问题（如果启用折叠） */
-  .el-menu--collapse .el-sub-menu__title span {
-    display: none;
-  }
-  .el-menu--collapse .el-sub-menu__title .el-sub-menu__icon-arrow {
-    display: none;
-  }
-  
-  .scrollbar-wrapper {
-    height: 100%;
-    overflow-x: hidden !important; /* 隐藏水平滚动条 */
-  }
-  
-  /* 可以根据需要自定义菜单样式 */
-  </style>
+  return path;
+});
+
+// 控制菜单折叠状态 (可以从父组件或 store 获取)
+const isCollapse = ref(false);
+
+</script>
+
+<style scoped>
+.el-menu {
+  border-right: none;
+  height: 100%;
+}
+.scrollbar-wrapper {
+  height: calc(100% - 50px); /* 根据你的布局调整，可能需要减去 logo 区域高度 */
+  overflow-x: hidden !important;
+}
+.el-menu--collapse {
+ width: 64px; /* 折叠时的宽度 */
+}
+.el-menu:not(.el-menu--collapse) {
+ width: 200px; /* 展开时的宽度 */
+}
+
+/* 修复折叠时 Tooltip 问题或样式 */
+.el-menu--collapse .el-sub-menu__title span,
+.el-menu--collapse .el-sub-menu__title .el-sub-menu__icon-arrow {
+  display: none;
+}
+</style>
