@@ -1,69 +1,48 @@
 <template>
-    <div class="app-wrapper">
-      <div class="main-container">
-        <section class="app-main">
-          <router-view v-slot="{ Component, route }">
-            <transition name="fade-transform" mode="out-in">
-              <component :is="Component" :key="route.path" />
-              </transition>
-          </router-view>
-        </section>
-      </div>
-    </div>
-  </template>
-  
-  <script setup>
-  // 这里可以添加布局相关的逻辑，例如获取需要缓存的页面列表等
-  // import { computed } from 'vue';
-  // import { useTagsViewStore } from '@/store/modules/tagsView'; // 示例
-  // const tagsViewStore = useTagsViewStore();
-  // const cachedViews = computed(() => tagsViewStore.cachedViews);
-  
-  // 也可以导入并使用 Sidebar, Navbar, TagsView 等子组件
-  // import Sidebar from './components/Sidebar/index.vue';
-  // import Navbar from './components/Navbar.vue';
-  // import TagsView from './components/TagsView/index.vue';
-  </script>
-  
-  <style lang="scss" scoped> // 推荐使用 scoped 和 scss
-  .app-wrapper {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex; // 或者其他布局方式
-  }
-  
-  .main-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    transition: margin-left .28s;
-    // margin-left: var(--sidebar-width); // 根据侧边栏状态调整
-    position: relative;
-  }
-  
-  .app-main {
-    /* 主内容区域样式 */
-    min-height: calc(100vh - 50px); /* 假设顶部导航栏高度为 50px */
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    padding: 20px; /* 内容区域内边距 */
-    background-color: #f0f2f5; /* 背景色示例 */
-  }
-  
-  /* 可以添加过渡动画样式 */
-  .fade-transform-leave-active,
-  .fade-transform-enter-active {
-    transition: all .5s;
-  }
-  .fade-transform-enter-from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  .fade-transform-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  </style>
+  <el-container class="layout-container">
+    <el-container>
+      <el-aside width="200px"> <SidebarComponent />
+      </el-aside>
+
+      <el-main>
+        <router-view />
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<script setup>
+import { RouterView } from 'vue-router';
+import SidebarComponent from './Sidebar.vue'; // 引入侧边栏组件
+// import HeaderComponent from './Header.vue'; // 如果有顶部导航栏，也引入
+import { ElContainer, ElAside, ElMain, ElHeader } from 'element-plus'; // 按需导入或全局导入
+</script>
+
+<style scoped>
+.layout-container {
+  height: 100vh; /* 让布局撑满整个视口高度 */
+  width: 100%;
+}
+
+.el-aside {
+  background-color: #545c64; /* 示例背景色 */
+  color: #fff;
+  height: 100%; /* 侧边栏也撑满高度 */
+  /* 可以添加更多样式 */
+}
+
+.el-main {
+  background-color: #f0f2f5; /* 示例背景色 */
+  padding: 20px; /* 给内容区一些内边距 */
+  height: 100%; /* 让内容区撑满 */
+  overflow-y: auto; /* 如果内容过长，允许滚动 */
+}
+
+/* 如果有 Header */
+/* .el-header {
+  background-color: #fff;
+  color: #333;
+  line-height: 60px;
+  border-bottom: 1px solid #eee;
+} */
+</style>
