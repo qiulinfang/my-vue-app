@@ -154,7 +154,6 @@ function resolvePath(routePath) {
   }
   try {
     const base = 'http://localhost:5173' + (props.basePath ? (props.basePath.startsWith('/') ? props.basePath : '/' + props.basePath) : '/') + '/';
-    console.log(`Base: ${base}, RoutePath: ${routePath}`);
     const resolvedUrl = new URL(routePath, base);
     return resolvedUrl.pathname;
   } catch (e) {
