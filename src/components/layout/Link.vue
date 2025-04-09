@@ -1,4 +1,3 @@
-// src/components/layout/Link.vue
 <template>
   <component :is="linkComponent" v-bind="linkProps(to)">
     <slot /> </component>

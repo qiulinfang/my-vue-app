@@ -2,7 +2,6 @@
 <template>
   <div v-if="!item.meta?.hidden">
     <template v-if="menuDisplayInfo.mode === 'link' && menuDisplayInfo.itemToLink?.meta">
-      {{ resolvePath(menuDisplayInfo.itemToLink.path) }}
       <app-link :to="resolvePath(menuDisplayInfo.itemToLink.path)">
         <el-menu-item
           :index="resolvePath(menuDisplayInfo.itemToLink.path)"
@@ -22,7 +21,6 @@
       :index="resolvePath(item.path)"
       popper-append-to-body
     >
-    {{ resolvePath(item.path) }}
       <template #title>
         <el-icon v-if="menuDisplayInfo.icon">
            <component :is="menuDisplayInfo.icon" />
@@ -38,8 +36,7 @@
         class="nest-menu"
       />
     </el-sub-menu>
-
-    </div>
+  </div>
 </template>
 
 <script setup>
