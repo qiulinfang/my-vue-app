@@ -10,8 +10,6 @@
   // 你可以在这里编写组件的逻辑，例如处理用户输入、调用登录 API 等
   import { ref } from 'vue';
   
-  console.log('登录页面组件 setup 执行');
-  
   const username = ref('');
   const password = ref('');
   

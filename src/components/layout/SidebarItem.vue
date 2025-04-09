@@ -1,38 +1,49 @@
-
 <template>
+  <!-- 判断当前菜单项是否隐藏，如果 hidden 属性为 true，则不渲染该菜单项 -->
   <div v-if="!item.meta?.hidden">
+
+    <!-- 当 menuDisplayInfo.mode 为 'link' 且 itemToLink 存在 meta 时，渲染为单个链接 -->
     <template v-if="menuDisplayInfo.mode === 'link' && menuDisplayInfo.itemToLink?.meta">
+      <!-- 使用 AppLink 组件包裹 el-menu-item，实现路由跳转 -->
       <app-link :to="resolvePath(menuDisplayInfo.itemToLink.path)">
+        <!-- 渲染菜单项 -->
         <el-menu-item
-          :index="resolvePath(menuDisplayInfo.itemToLink.path)"
-          :class="{'submenu-title-noDropdown': !isNest}"
+          :index="resolvePath(menuDisplayInfo.itemToLink.path)" 
+          :class="{'submenu-title-noDropdown': !isNest}" 
         >
+         <!-- 如果存在图标，则渲染图标 -->
           <el-icon v-if="menuDisplayInfo.icon">
             <component :is="menuDisplayInfo.icon" />
           </el-icon>
+          <!-- 渲染菜单标题 -->
           <template #title>{{ menuDisplayInfo.title }}</template>
         </el-menu-item>
       </app-link>
     </template>
 
+    <!-- 当 menuDisplayInfo.mode 为 'submenu' 时，渲染为子菜单 -->
     <el-sub-menu
-      v-else-if="menuDisplayInfo.mode === 'submenu'"
-      ref="subMenu"
-      :index="resolvePath(item.path)"
+      v-else-if="menuDisplayInfo.mode === 'submenu'" 
+      ref="subMenu" 
+      :index="resolvePath(item.path)" 
       popper-append-to-body
     >
+      <!-- 渲染子菜单标题 -->
       <template #title>
+        <!-- 如果存在图标，则渲染图标 -->
         <el-icon v-if="menuDisplayInfo.icon">
            <component :is="menuDisplayInfo.icon" />
         </el-icon>
+        <!-- 渲染子菜单标题 -->
         <span>{{ menuDisplayInfo.title }}</span>
       </template>
+      <!-- 递归渲染子菜单的子项 -->
       <sidebar-item
-        v-for="child in menuDisplayInfo.childrenToRender"
-        :key="child.path"
-        :is-nest="true"
-        :item="child"
-        :base-path="resolvePath(item.path)"
+        v-for="child in menuDisplayInfo.childrenToRender" 
+        :key="child.path" 
+        :is-nest="true" 
+        :item="child" 
+        :base-path="resolvePath(item.path)" 
         class="nest-menu"
       />
     </el-sub-menu>
@@ -81,7 +92,8 @@ const menuDisplayInfo = computed(() => {
       mode: 'submenu',
       title: parentMeta.title,
       icon: parentMeta.icon,
-      childrenToRender: visible
+      childrenToRender: visible,
+      path: props.item.path
     };
   }
 
@@ -97,7 +109,8 @@ const menuDisplayInfo = computed(() => {
         itemToLink: singleChild,
          // 图标优先用子项的，如果没有，则尝试用父项的作为后备 (可以根据需求调整)
         icon: singleChild.meta?.icon || parentMeta.icon,
-        title: singleChild.meta?.title
+        title: singleChild.meta?.title,
+        itemToLink: { ...props.item, path: props.item.path || '' }, // 确保 path 存在
       };
     }
      // 如果唯一的子项自己还有子项，那它应该显示为 submenu (即使父级没设置alwaysShow)
@@ -106,7 +119,8 @@ const menuDisplayInfo = computed(() => {
         mode: 'submenu',
         title: parentMeta.title,
         icon: parentMeta.icon,
-        childrenToRender: visible // 包含那个唯一的子项
+        childrenToRender: visible ,// 包含那个唯一的子项
+        path: props.item.path
       };
   }
 
@@ -139,7 +153,8 @@ function resolvePath(routePath) {
     return props.basePath;
   }
   try {
-    const base = 'http://dummy.com' + (props.basePath ? (props.basePath.startsWith('/') ? props.basePath : '/' + props.basePath) : '/');
+    const base = 'http://localhost:5173' + (props.basePath ? (props.basePath.startsWith('/') ? props.basePath : '/' + props.basePath) : '/') + '/';
+    console.log(`Base: ${base}, RoutePath: ${routePath}`);
     const resolvedUrl = new URL(routePath, base);
     return resolvedUrl.pathname;
   } catch (e) {

@@ -1,13 +1,12 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
-      :default-active="activeMenu"
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      :collapse="isCollapse"
-      :unique-opened="true" mode="vertical"
+    :default-active="activeMenu"
+      :unique-opened="true"
+      mode="vertical"
+      background-color="#304156" 
+      text-color="#bfcbd9"
+      active-text-color="#409EFF"
     >
       <sidebar-item
         v-for="route in menuRoutes"
@@ -21,6 +20,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { asyncRoutes } from '@/router'; // <--- 导入 asyncRoutes
 import { ElMenu, ElScrollbar } from 'element-plus';
 import SidebarItem from './SidebarItem.vue'; // 引入递归菜单项组件
 // import { routes } from '@/router'; // 如果路由是静态导入的
@@ -34,18 +34,10 @@ const route = useRoute();
 // 例如 Pinia store 或者直接使用 router.getRoutes() 并进行处理。
 // 假设你的布局路由都在 asyncRoutes 中，并且已添加到 router 实例
 const menuRoutes = computed(() => {
-  // router.getRoutes() 获取当前所有注册的路由记录
-  // 你需要根据你的路由结构进行过滤，通常是找到 path: '/' 的那个布局路由下的 children
-  console.log(router.getRoutes())
-  const layoutRoute = router.getRoutes(); // 假设你的 Layout 组件有 name: 'Layout'
-  if (!layoutRoute) {
-    console.error('布局路由 / 未找到');
-    return [];
-  }
-  // 或者直接使用导入的 asyncRoutes (如果你的路由不是动态根据权限生成的)
-  // import { asyncRoutes } from '@/router' // 如果直接用这个
-  // return asyncRoutes;
-  return layoutRoute; // 返回布局路由的子路由作为菜单来源
+  // 直接返回 asyncRoutes。SidebarItem 内部会处理 hidden 等逻辑。
+  // 你也可以在这里进行一层过滤，比如确保有 meta 和 title
+  // return asyncRoutes.filter(r => r.meta && r.meta.title);
+  return asyncRoutes; // <--- 返回原始嵌套结构
 });
 
 // 计算当前激活的菜单项

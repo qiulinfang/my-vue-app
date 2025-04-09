@@ -1,6 +1,16 @@
+// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import Layout from '@/components/layout/Layout.vue'; // 确保路径正确
+import Layout from '@/components/layout/Layout.vue'; // 可以在这里导入，或者确认在模块中导入即可
 
+// --- 导入各个模块的路由配置 ---
+import dashboardRouter from './modules/dashboard';
+import systemRouter from './modules/system';
+// import productsRouter from './modules/products';
+// import contentRouter from './modules/content';
+// import externalLinksRouter from './modules/external';
+// ... 如果有更多模块，继续导入
+
+// --- 公开访问的路由 ---
 export const constantRoutes = [
   {
     path: '/login',
@@ -8,82 +18,30 @@ export const constantRoutes = [
     component: () => import('@/views/login/index.vue'),
     meta: { title: '登录', hidden: true }
   },
-  // 可以添加 404 页面路由
   {
     path: '/404',
     name: 'NotFound',
-    component: () => import('@/views/error/404.vue'), // 假设有 404 页面
-    meta: { hidden: true }
-  }
+    component: () => import('@/views/error/404.vue'),
+    meta: { title: '页面未找到', hidden: true }
+  },
+  // 你可能还有 /redirect 等其他常量路由
 ];
 
-// 需要布局的路由（通常是异步或需要权限的）
+// --- 需要权限或动态添加的路由，由模块组成 ---
+// 注意：这里的顺序可能影响菜单的显示顺序
 export const asyncRoutes = [
-  {
-    path: '/', // 根路径通常指向布局
-    component: Layout, // 使用 Layout 组件作为容器
-    name: 'Layout',
-    redirect: '/dashboard', // 默认重定向到首页或其他页面
-    children: [
-      {
-        path: 'dashboard', // 路径是 /dashboard
-        name: 'Dashboard',
-        component: () => import('@/views/dashboard/index.vue'), // 首页内容组件
-        meta: { title: '首页', icon: 'HomeFilled' } // meta 用于菜单生成和面包屑
-      },
-    ]
-  },
-  {
-    path: '/system',
-    component: Layout,
-    redirect: '/system/user',
-    name: 'System',
-    meta: { title: '系统管理', icon: 'Setting',alwaysShow: true }, // 父菜单项
-    children: [
-      {
-        path: 'user',
-        name: 'UserManagement',
-        component: () => import('@/views/system/User.vue'),
-        meta: { title: '用户管理' } // 子菜单项
-      },
-      {
-        path: 'role',
-        name: 'RoleManagement',
-        component: () => import('@/views/system/Role.vue'),
-        meta: { title: '角色管理' } // 子菜单项
-      },
-    ]
-  },
-  {
-    path: '/external-links', // 父级路由路径
-    component: Layout,
-    name: 'ExternalLinks',
-    meta: { title: '外部链接', icon: 'Link' }, // 父菜单项
-    children: [
-      {
-        // path 直接是外部 URL
-        path: 'https://element-plus.org/',
-        // name 不是必须的，但可以有
-        name: 'ElementPlusExternal',
-        // component 通常不需要，因为 AppLink 会处理跳转
-        meta: { title: 'Element Plus 官网' } // 图标可以在父级或这里定义
-      },
-      {
-        path: 'https://vuejs.org/',
-        name: 'VueJsExternal',
-        meta: { title: 'Vue.js 官网' }
-      }
-    ]
-  },
-  // **重要：** 将 404 匹配放到所有路由规则的最后
-  { path: '/:pathMatch(.*)*', redirect: '/404', meta: { hidden: true } }
+  dashboardRouter, // 首页通常放最前
+  systemRouter,
+  // productsRouter,
+  // contentRouter,
+  // externalLinksRouter,
+  // ... 添加其他导入的模块路由
 ];
 
+// --- 创建 Router 实例 ---
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  // 初始时只加载常量路由，动态路由会在登录后添加（如果需要权限控制）
-  // 如果不需要权限，可以将 asyncRoutes 合并到 routes
-  routes: constantRoutes, 
+  routes: constantRoutes, // 初始加载常量路由
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
@@ -93,54 +51,82 @@ const router = createRouter({
   }
 });
 
-// --- 你的导航守卫逻辑 ---
-// 如果需要动态添加路由（权限控制），在 beforeEach 中：
-// 1. 判断是否登录
-// 2. 如果已登录且没有角色/路由信息，则获取信息
-// 3. 根据角色生成可访问路由 (filteredAsyncRoutes)
-// 4. 使用 router.addRoute() 动态添加路由
-// 5. 使用 next({ ...to, replace: true }) 确保路由添加完毕
+// --- 导航守卫 (维持原样，但现在处理的是由模块组成的 asyncRoutes) ---
 router.beforeEach(async (to, from, next) => {
-  // 示例：如果没有权限控制，直接添加所有 asyncRoutes
-  // 注意：实际项目中，这部分通常在登录成功后或有 token 时执行，并根据用户权限过滤 asyncRoutes
-  // 这里仅作演示，假设所有 asyncRoutes 都需要添加
-  const hasAddedRoutes = router.hasRoute('Dashboard'); // 检查一个动态路由是否存在，判断是否已添加
-  if (!hasAddedRoutes && to.path !== '/login') { // 避免重复添加和在登录页添加
-     try {
-        asyncRoutes.forEach(route => {
-           router.addRoute(route);
-        });
-        console.log('动态路由已添加:', router.getRoutes());
-        // 使用 replace: true, 以确保 addRoute 完成后，使用新的路由表进行导航
-        next({ ...to, replace: true }); 
-     } catch (error) {
-        console.error("添加动态路由时出错:", error);
-        // 可以重定向到错误页或登录页
-        next('/login'); 
-     }
-  } else {
-     next(); // 正常放行
+  // TODO: 替换为真实的权限判断和路由添加逻辑
+  // 示例逻辑：
+  // const token = localStorage.getItem('your_token_key'); // 假设从 localStorage 获取 token
+  const token = 111; // 假设从 localStorage 获取 token
+  const hasRoutes = router.hasRoute('Dashboard'); // 检查核心路由是否存在判断是否已添加
+
+  if (token) { // 已登录
+    if (to.path === '/login') {
+      next({ path: '/' }); // 重定向到首页
+    } else {
+      if (!hasRoutes) { // 如果路由未添加
+        try {
+          // 实际项目中，这里应该是根据用户角色过滤后的 accessRoutes
+          const accessRoutes = asyncRoutes; // 示例：添加所有模块路由
+
+          accessRoutes.forEach(route => {
+            // 最好检查一下是否已存在同名路由，虽然 addRoute 内部可能有处理
+            if (route.name && !router.hasRoute(route.name)) {
+              router.addRoute(route);
+            } else if (!route.name) {
+              router.addRoute(route); // 没有 name 的路由谨慎处理
+            }
+          });
+
+          // **动态添加 404 捕获规则到最后**
+          // 确保它只在所有其他路由添加之后执行，并且只添加一次
+          if (!router.hasRoute('CatchAll')) { // 防止重复添加
+             router.addRoute({ path: '/:pathMatch(.*)*', name: 'CatchAll', redirect: '/404', meta: { hidden: true } });
+          }
+
+          console.log('动态路由模块已添加:', router.getRoutes().map(r=>r.name)); // 打印路由名称方便调试
+          next({ ...to, replace: true }); // 确保使用新路由表
+        } catch (error) {
+          console.error("添加动态路由模块时出错:", error);
+          // 可能需要重置 token 或其他错误处理
+          next('/login');
+        }
+      } else {
+        next(); // 路由已添加，正常放行
+      }
+    }
+  } else { // 未登录
+    if (to.path !== '/login') {
+      next(`/login?redirect=${to.path}`); // 重定向到登录页
+    } else {
+      next(); // 访问登录页，放行
+    }
   }
-
-  // **** 替换为你的完整导航守卫逻辑 ****
 });
 
-
+// --- 后置守卫 ---
 router.afterEach((to) => {
-  document.title = to.meta.title ? `${to.meta.title} - YourAppName` : 'YourAppName';
+  document.title = to.meta.title ? `${to.meta.title} - 你的应用名称` : '你的应用名称';
 });
 
-// （可选）导出重置路由函数，用于登出
+// --- 重置路由函数 (基本保持不变，因为它遍历的是原始的 asyncRoutes 数组) ---
 export function resetRouter() {
-  // 移除动态添加的路由
+  console.log('重置路由...');
+  // 遍历原始定义的 asyncRoutes 数组，移除对应名称的路由
   asyncRoutes.forEach(route => {
     if (route.name && router.hasRoute(route.name)) {
       router.removeRoute(route.name);
+      console.log(`路由已移除: ${route.name}`);
     }
-    // 如果路由没有 name，可能需要更复杂的逻辑来移除
+    // 注意：如果模块路由结构复杂（例如模块内部又添加了动态路由），可能需要更复杂的移除逻辑
   });
-  // 也可以重新创建 router 实例来完全重置，但 removeRoute 通常足够
+   // 移除 404 CatchAll 规则
+   if(router.hasRoute('CatchAll')){
+       router.removeRoute('CatchAll');
+       console.log('路由已移除: CatchAll');
+   }
+  // 可能还需要重置 Pinia store 中的路由状态
+  // const permissionStore = usePermissionStore();
+  // permissionStore.resetRoutes(); // 假设 store 中有此方法
 }
-
 
 export default router;

@@ -13,7 +13,6 @@ import { RouterView } from 'vue-router';
 // - 主要的布局结构和逻辑会封装在专门的布局组件中（例如 src/layout/Layout.vue）。
 
 // 你可以在这里执行一些非常顶层的、只执行一次的初始化逻辑，但通常很少需要。
-console.log('后台管理系统 App.vue setup 已执行');
 </script>
 
 <style>
