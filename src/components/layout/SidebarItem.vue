@@ -1,26 +1,36 @@
-// src/components/layout/SidebarItem.vue
+
 <template>
   <div v-if="!item.meta?.hidden">
-    <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.meta?.alwaysShow">
-      <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <el-icon v-if="onlyOneChild.meta.icon || item.meta?.icon">
-            <component :is="onlyOneChild.meta.icon || item.meta?.icon" />
+    <template v-if="menuDisplayInfo.mode === 'link' && menuDisplayInfo.itemToLink?.meta">
+      {{ resolvePath(menuDisplayInfo.itemToLink.path) }}
+      <app-link :to="resolvePath(menuDisplayInfo.itemToLink.path)">
+        <el-menu-item
+          :index="resolvePath(menuDisplayInfo.itemToLink.path)"
+          :class="{'submenu-title-noDropdown': !isNest}"
+        >
+          <el-icon v-if="menuDisplayInfo.icon">
+            <component :is="menuDisplayInfo.icon" />
           </el-icon>
-          <template #title>{{ onlyOneChild.meta.title }}</template>
+          <template #title>{{ menuDisplayInfo.title }}</template>
         </el-menu-item>
       </app-link>
     </template>
 
-    <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-sub-menu
+      v-else-if="menuDisplayInfo.mode === 'submenu'"
+      ref="subMenu"
+      :index="resolvePath(item.path)"
+      popper-append-to-body
+    >
+    {{ resolvePath(item.path) }}
       <template #title>
-        <el-icon v-if="item.meta?.icon">
-           <component :is="item.meta.icon" />
+        <el-icon v-if="menuDisplayInfo.icon">
+           <component :is="menuDisplayInfo.icon" />
         </el-icon>
-        <span>{{ item.meta?.title }}</span>
+        <span>{{ menuDisplayInfo.title }}</span>
       </template>
       <sidebar-item
-        v-for="child in item.children"
+        v-for="child in menuDisplayInfo.childrenToRender"
         :key="child.path"
         :is-nest="true"
         :item="child"
@@ -28,107 +38,128 @@
         class="nest-menu"
       />
     </el-sub-menu>
-  </div>
+
+    </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import path from 'path-browserify'; // 使用 path-browserify 处理路径拼接
-import { isExternal } from '@/utils/validate'; // 假设你有判断是否外部链接的工具函数
-import AppLink from './Link.vue'; // 一个用于处理内部和外部链接的组件
+import { computed } from 'vue'; // 移除了 ref，因为不再需要 onlyOneChild ref
+import { isExternal } from '@/utils/validate';
+import AppLink from './Link.vue';
 import { ElMenuItem, ElSubMenu, ElIcon } from 'element-plus';
-// import * as ElementPlusIconsVue from '@element-plus/icons-vue' // 如果图标是动态的，可能需要导入所有图标
 
 // -------- Props --------
 const props = defineProps({
-  // 当前路由项 (route config)
   item: {
     type: Object,
     required: true
   },
-  // 是否嵌套菜单（用于样式区分）
   isNest: {
     type: Boolean,
     default: false
   },
-  // 父级基础路径
   basePath: {
     type: String,
     default: ''
   }
 });
 
-// -------- State --------
-const onlyOneChild = ref(null); // 用于存储唯一的可显示子路由
+// -------- Computed Properties --------
+
+// 计算可见的子路由 (过滤掉 hidden: true 的)
+const visibleChildren = computed(() => {
+  return props.item.children?.filter(child => !child.meta?.hidden) || [];
+});
+
+// 计算菜单项应该如何显示 (核心逻辑)
+const menuDisplayInfo = computed(() => {
+  const visible = visibleChildren.value;
+  const visibleCount = visible.length;
+  const parentMeta = props.item.meta || {};
+  const alwaysShowParent = parentMeta.alwaysShow === true; // 父菜单是否强制显示为下拉
+
+  // 情况 1: 显示为子菜单 (有多个可见子项，或者只有一个但父级设置了 alwaysShow)
+  if (visibleCount > 1 || (visibleCount === 1 && alwaysShowParent)) {
+    return {
+      mode: 'submenu',
+      title: parentMeta.title,
+      icon: parentMeta.icon,
+      childrenToRender: visible
+    };
+  }
+
+  // 情况 2: 显示为单个链接 - 只有一个可见子项，且该子项没有自己的可见子项，且父级没设置 alwaysShow
+  if (visibleCount === 1 && !alwaysShowParent) {
+    const singleChild = visible[0];
+    const childHasVisibleChildren = singleChild.children?.some(c => !c.meta?.hidden);
+    if (!childHasVisibleChildren) {
+      // 返回这个唯一的子项作为链接目标
+      return {
+        mode: 'link',
+        // 对于链接项，路径和 meta 信息都来自这个子项
+        itemToLink: singleChild,
+         // 图标优先用子项的，如果没有，则尝试用父项的作为后备 (可以根据需求调整)
+        icon: singleChild.meta?.icon || parentMeta.icon,
+        title: singleChild.meta?.title
+      };
+    }
+     // 如果唯一的子项自己还有子项，那它应该显示为 submenu (即使父级没设置alwaysShow)
+     // 所以这里也归入 submenu 逻辑
+      return {
+        mode: 'submenu',
+        title: parentMeta.title,
+        icon: parentMeta.icon,
+        childrenToRender: visible // 包含那个唯一的子项
+      };
+  }
+
+  // 情况 3: 显示为单个链接 - 没有可见子项，直接链接父级自身 (前提是父级有 meta.title)
+  if (visibleCount === 0 && parentMeta.title) {
+    // 链接目标是父级路由项自身
+    return {
+      mode: 'link',
+      // 对于链接项，路径和 meta 信息都来自父项
+      itemToLink: { ...props.item, path: props.item.path || '' }, // 确保 path 存在
+      icon: parentMeta.icon,
+      title: parentMeta.title
+    };
+  }
+
+  // 其他情况 (例如，父级本身没有 title，也没有可见子项)，理论上不应该渲染
+  // 但根路由或特殊情况可能需要处理，这里返回 'hidden' 或 'none'
+  return { mode: 'none' };
+});
+
 
 // -------- Methods --------
 
-// 判断是否只有一个可显示的子节点
-// parent: 父路由对象
-// children: 子路由数组 (默认为空数组)
-function hasOneShowingChild(children = [], parent) {
-  // 过滤掉 hidden: true 的子路由
-  const showingChildren = children.filter(child => {
-    if (child.meta?.hidden) {
-      return false;
-    } else {
-      // 临时设置 onlyOneChild 变量，用于后续渲染
-      onlyOneChild.value = child;
-      return true;
-    }
-  });
-
-  // Case 1: 当只有一个子路由时，直接返回 true
-  if (showingChildren.length === 1) {
-    return true;
-  }
-
-  // Case 2: 当没有子路由可显示时，显示父级自身作为链接
-  // 需要确保父级路由有 meta 信息才显示
-  if (showingChildren.length === 0) {
-    // 将父路由信息赋给 onlyOneChild，但要移除 children 属性防止无限递归
-    onlyOneChild.value = { ...parent, path: '', noShowingChildren: true };
-    return true;
-  }
-
-  // Case 3: 有多个子路由
-  return false;
-}
-
-// 解析路径：拼接 basePath 和 routePath
+// 解析路径函数保持不变
 function resolvePath(routePath) {
-  // 如果是外部链接，直接返回
   if (isExternal(routePath)) {
     return routePath;
   }
-  // 如果子路径是外部链接，也直接返回（通常外部链接放在 children 里 path 设为完整 URL）
-   if (isExternal(props.basePath)) {
+  if (isExternal(props.basePath)) {
     return props.basePath;
   }
-  // 使用 path.resolve 进行路径拼接，能处理 '../' './' 等情况
-  // 注意：前端路径拼接通常用 path.join 或自定义逻辑更合适，这里用 resolve 示例
-  // 更安全的做法可能是简单的字符串拼接，确保斜杠正确
-   const absolutePath = path.resolve(props.basePath, routePath);
-  // console.log(`Resolving path: basePath='${props.basePath}', routePath='${routePath}', result='${absolutePath}'`);
-  // 使用 path.join 更适合 URL 路径拼接
-   const joinedPath = path.join(props.basePath, routePath).replace(/\\/g, '/'); // 替换反斜杠
-  //  console.log(`Resolving path: basePath='${props.basePath}', routePath='${routePath}', joined='${joinedPath}'`);
-  return joinedPath;
-
+  try {
+    const base = 'http://dummy.com' + (props.basePath ? (props.basePath.startsWith('/') ? props.basePath : '/' + props.basePath) : '/');
+    const resolvedUrl = new URL(routePath, base);
+    return resolvedUrl.pathname;
+  } catch (e) {
+    console.error(`Error resolving path: basePath='${props.basePath}', routePath='${routePath}'`, e);
+    const B = props.basePath || '';
+    const R = routePath || '';
+    if (R.startsWith('/')) { return R; }
+    return (B.replace(/\/$/, '') + '/' + R.replace(/^\//, '')).replace(/\/\//g, '/');
+  }
 }
-
-// (可选) 动态加载图标，如果你的图标组件名存储在 meta.icon 中
-// const iconComponent = computed(() => {
-//   const iconName = props.item.meta?.icon;
-//   return iconName ? ElementPlusIconsVue[iconName] : null;
-// });
-
 </script>
 
+
 <style scoped>
-/* 可以添加一些嵌套菜单的样式 */
+/* 样式保持不变 */
 .nest-menu .el-menu-item {
-  padding-left: 40px !important; /* 调整嵌套菜单项的缩进 */
+ padding-left: 40px !important; /* 调整嵌套菜单项的缩进 */
 }
-/* 可以根据 isNest prop 添加更多样式 */
 </style>
+

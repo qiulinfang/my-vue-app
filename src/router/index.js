@@ -6,14 +6,14 @@ export const constantRoutes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
-    meta: { title: '登录', hidden: false }
+    meta: { title: '登录', hidden: true }
   },
   // 可以添加 404 页面路由
   {
     path: '/404',
     name: 'NotFound',
     component: () => import('@/views/error/404.vue'), // 假设有 404 页面
-    meta: { hidden: false }
+    meta: { hidden: true }
   }
 ];
 
@@ -22,6 +22,7 @@ export const asyncRoutes = [
   {
     path: '/', // 根路径通常指向布局
     component: Layout, // 使用 Layout 组件作为容器
+    name: 'Layout',
     redirect: '/dashboard', // 默认重定向到首页或其他页面
     children: [
       {
@@ -32,7 +33,48 @@ export const asyncRoutes = [
       },
     ]
   },
-
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/user',
+    name: 'System',
+    meta: { title: '系统管理', icon: 'Setting',alwaysShow: true }, // 父菜单项
+    children: [
+      {
+        path: 'user',
+        name: 'UserManagement',
+        component: () => import('@/views/system/User.vue'),
+        meta: { title: '用户管理' } // 子菜单项
+      },
+      {
+        path: 'role',
+        name: 'RoleManagement',
+        component: () => import('@/views/system/Role.vue'),
+        meta: { title: '角色管理' } // 子菜单项
+      },
+    ]
+  },
+  {
+    path: '/external-links', // 父级路由路径
+    component: Layout,
+    name: 'ExternalLinks',
+    meta: { title: '外部链接', icon: 'Link' }, // 父菜单项
+    children: [
+      {
+        // path 直接是外部 URL
+        path: 'https://element-plus.org/',
+        // name 不是必须的，但可以有
+        name: 'ElementPlusExternal',
+        // component 通常不需要，因为 AppLink 会处理跳转
+        meta: { title: 'Element Plus 官网' } // 图标可以在父级或这里定义
+      },
+      {
+        path: 'https://vuejs.org/',
+        name: 'VueJsExternal',
+        meta: { title: 'Vue.js 官网' }
+      }
+    ]
+  },
   // **重要：** 将 404 匹配放到所有路由规则的最后
   { path: '/:pathMatch(.*)*', redirect: '/404', meta: { hidden: true } }
 ];

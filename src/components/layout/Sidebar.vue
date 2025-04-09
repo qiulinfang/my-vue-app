@@ -1,4 +1,3 @@
-// src/components/layout/Sidebar.vue
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
@@ -37,11 +36,16 @@ const route = useRoute();
 const menuRoutes = computed(() => {
   // router.getRoutes() 获取当前所有注册的路由记录
   // 你需要根据你的路由结构进行过滤，通常是找到 path: '/' 的那个布局路由下的 children
-  const layoutRoute = router.getRoutes().find(r => r.path === '/' && r.component?.name === 'Layout'); // 假设你的 Layout 组件有 name: 'Layout'
+  console.log(router.getRoutes())
+  const layoutRoute = router.getRoutes(); // 假设你的 Layout 组件有 name: 'Layout'
+  if (!layoutRoute) {
+    console.error('布局路由 / 未找到');
+    return [];
+  }
   // 或者直接使用导入的 asyncRoutes (如果你的路由不是动态根据权限生成的)
   // import { asyncRoutes } from '@/router' // 如果直接用这个
   // return asyncRoutes;
-  return layoutRoute ? layoutRoute.children : []; // 返回布局路由的子路由作为菜单来源
+  return layoutRoute; // 返回布局路由的子路由作为菜单来源
 });
 
 // 计算当前激活的菜单项
