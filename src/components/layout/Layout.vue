@@ -1,9 +1,12 @@
 <template>
+  <el-header>
+    <HeaderComponent />
+  </el-header>
   <el-container class="layout-container">
     <el-container>
-      <el-aside width="200px"> <SidebarComponent />
+      <el-aside width="200px">
+        <SidebarComponent />
       </el-aside>
-
       <el-main>
         <router-view />
       </el-main>
@@ -13,36 +16,46 @@
 
 <script setup>
 import { RouterView } from 'vue-router';
-import SidebarComponent from './Sidebar.vue'; // 引入侧边栏组件
-// import HeaderComponent from './Header.vue'; // 如果有顶部导航栏，也引入
-import { ElContainer, ElAside, ElMain, ElHeader } from 'element-plus'; // 按需导入或全局导入
+import SidebarComponent from './Sidebar.vue';
+import HeaderComponent from './Header.vue';
+// Element Plus components are likely globally registered or correctly imported already
 </script>
 
 <style scoped>
 .layout-container {
-  height: 100vh; /* 让布局撑满整个视口高度 */
+  /* 减去 Header 的高度，假设 Header 固定为 60px */
+  height: calc(100vh - 60px);
   width: 100%;
 }
 
+/* --- Color Scheme 1: White Header --- */
+
+.el-header {
+  background-color: #ffffff; /* 洁净的白色 */
+  color: #303133; /* 默认深灰色文字，对比度好 */
+  line-height: 60px; /* 保持 */
+  border-bottom: 1px solid #e4e7ed; /* Element Plus 默认的浅灰色边框 */
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08); /* 可选：添加细微阴影增加层次感 */
+}
+
 .el-aside {
-  background-color: #545c64; /* 示例背景色 */
-  color: #fff;
-  height: 100%; /* 侧边栏也撑满高度 */
-  /* 可以添加更多样式 */
+  background-color: #304156; /* 更深邃、专业的蓝灰色，常用于后台侧边栏 */
+  color: #bfcbd9; /* 侧边栏文字浅灰色，与深色背景协调 */
+  height: 100%;
+  border-right: none; /* 通常深色侧边栏不需要右边框 */
+   /* 你可能还需要设置 el-menu 的背景色为透明或匹配 #304156 */
+  /* .el-menu { background-color: transparent; } */
 }
 
 .el-main {
-  background-color: #f0f2f5; /* 示例背景色 */
-  padding: 20px; /* 给内容区一些内边距 */
-  height: 100%; /* 让内容区撑满 */
-  overflow-y: auto; /* 如果内容过长，允许滚动 */
+  background-color: #f0f2f5; /* 标准的浅灰色背景，适合内容区域 */
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
 
-/* 如果有 Header */
-/* .el-header {
-  background-color: #fff;
-  color: #333;
-  line-height: 60px;
-  border-bottom: 1px solid #eee;
-} */
+/* 确保侧边栏和主内容区容器占满剩余高度 */
+.el-container > .el-container {
+  height: 100%;
+}
 </style>

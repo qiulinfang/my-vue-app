@@ -6,14 +6,14 @@ export const constantRoutes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
-    meta: { title: '登录', hidden: true }
+    meta: { title: '登录', hidden: false }
   },
   // 可以添加 404 页面路由
   {
     path: '/404',
     name: 'NotFound',
     component: () => import('@/views/error/404.vue'), // 假设有 404 页面
-    meta: { hidden: true }
+    meta: { hidden: false }
   }
 ];
 
