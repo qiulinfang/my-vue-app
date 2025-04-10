@@ -25,13 +25,12 @@ const componentsRouter = {
       component: () => import('@/views/components/InputExample.vue'), // 引入对应的示例页面组件
       meta: { title: 'Input 输入框' } // 子菜单标题
     },
-    // --- 继续为你其他的组件添加路由 ---
-    // {
-    //   path: 'modal',
-    //   name: 'ModalExample',
-    //   component: () => import('@/views/components/ModalExample.vue'),
-    //   meta: { title: 'Modal 弹窗' }
-    // },
+    {
+      path: 'MultiLang',
+      name: 'MultiLang',
+      component: () => import('@/views/components/MultiLangExample.vue'),
+      meta: { title: 'MultiLang 多语言' }
+    },
   ]
 };
 
