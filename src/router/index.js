@@ -6,6 +6,7 @@ import Layout from '@/components/layout/Layout.vue'; // 可以在这里导入，
 import dashboardRouter from './modules/dashboard';
 import systemRouter from './modules/system';
 import componentsRouter from './modules/components'; 
+import directivesRouter from './modules/directives'; 
 // import productsRouter from './modules/products';
 // import contentRouter from './modules/content';
 // import externalLinksRouter from './modules/external';
@@ -34,6 +35,7 @@ export const asyncRoutes = [
   dashboardRouter, // 首页通常放最前
   systemRouter,
   componentsRouter,
+  directivesRouter,
   // productsRouter,
   // contentRouter,
   // externalLinksRouter,
