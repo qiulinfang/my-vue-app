@@ -23,7 +23,7 @@ const componentsRouter = {
     {
         path: 'border', // /components/border
         name: 'BorderExample',
-        component: () => import('@/views/components/BorderExample.vue'),
+        component: () => import('@/views/components/BorderExample.jsx'),
         meta: { title: 'Border 边框' }
     },
     {

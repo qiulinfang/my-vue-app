@@ -4,6 +4,7 @@ import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import path from 'path'; // 确保导入了 path 模块
+import vueJsx from '@vitejs/plugin-vue-jsx'; // Import the JSX plugin
 
 export default defineConfig({
   resolve: {
@@ -24,6 +25,6 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()], // 解析Element Plus组件
       dts: true, // 同样适用于TypeScript项目
     }),
-
+    vueJsx(), // Add the JSX plugin
   ],
 });

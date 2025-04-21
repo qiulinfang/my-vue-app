@@ -39,6 +39,7 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Header: typeof import('./src/components/layout/Header.vue')['default']
+    Icon: typeof import('./src/components/base/Icon/Icon.vue')['default']
     Input: typeof import('./src/components/base/Input/Input.vue')['default']
     Layout: typeof import('./src/components/layout/Layout.vue')['default']
     Link: typeof import('./src/components/layout/Link.vue')['default']
