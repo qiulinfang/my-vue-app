@@ -10,9 +10,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'), 
+      'myComponent': path.resolve(__dirname, './src/components'), 
     },
   },
-  plugins: [
+  plugins: [ 
     vue(),
     // 自动导入Vue和Element Plus相关函数如: ref, reactive, createElementVNode
     AutoImport({

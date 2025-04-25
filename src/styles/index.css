@@ -19,3 +19,5 @@ body, html, #app {
     text-decoration: none;
     color: inherit; /* 继承父元素颜色 */
   }
+
+  @import './components/button.scss';

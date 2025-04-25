@@ -2,15 +2,13 @@
 // 这个文件不是必需的，你可以直接在组件中导入具体的 store
 
 // 导入各个 store hook
-// import { useUserStore } from './modules/user';
+import { useUserStore } from './modules/user';
 // import { useAppStore } from './modules/app';
 // import { useSettingsStore } from './modules/settings';
 // import { usePermissionStore } from './modules/permission';
 
-// 统一导出，方便在组件中使用
-// 例如：import { useUserStore, useAppStore } from '@/store';
 export {
-//   useUserStore,
+  useUserStore,
 //   useAppStore,
 //   useSettingsStore,
   // usePermissionStore,

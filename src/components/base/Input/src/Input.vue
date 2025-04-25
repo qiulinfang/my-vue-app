@@ -1,48 +1,5 @@
 <template>
-  <el-input
-    :class="[ns.b(), ns.m(size), ns.is('disabled', disabled)]"
-    :modelValue="modelValue"
-    :type="type"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :readonly="readonly"
-    :clearable="clearable"
-    :show-password="showPassword"
-    :size="size"
-    :maxlength="maxlength"
-    :minlength="minlength"
-    :autocomplete="autocomplete"
-    :name="name"
-    :rows="type === 'textarea' ? rows : undefined"
-    :autosize="type === 'textarea' ? autosize : undefined"
-    @update:modelValue="handleInput"
-    @input="handleRawInput"
-    @change="handleChange"
-    @focus="handleFocus"
-    @blur="handleBlur"
-    @clear="handleClear"
-  >
-    <template #prefix v-if="$slots.prefix || prefixIcon">
-      <slot name="prefix">
-        <el-icon v-if="prefixIcon"><component :is="prefixIcon" /></el-icon>
-      </slot>
-    </template>
-
-    <template #suffix v-if="$slots.suffix || suffixIcon">
-      <slot name="suffix">
-         <el-icon v-if="suffixIcon"><component :is="suffixIcon" /></el-icon>
-      </slot>
-    </template>
-
-    <template #prepend v-if="$slots.prepend">
-      <slot name="prepend"></slot>
-    </template>
-
-    <template #append v-if="$slots.append">
-      <slot name="append"></slot>
-    </template>
-
-  </el-input>
+  <input type="text">
 </template>
 
 <script setup>

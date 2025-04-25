@@ -1,3 +1,4 @@
-import ButtonComponent from './Button.vue';
+import ButtonComponent from './src/Button.vue';
+
 
 export const Button = ButtonComponent;
