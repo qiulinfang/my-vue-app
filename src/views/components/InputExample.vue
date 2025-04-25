@@ -11,7 +11,6 @@
   // 确保路径正确  
   // 如果图标不是全局注册的，需要按需导入
   // import { User, Calendar, Lock, Search, Edit } from '@element-plus/icons-vue';
-  import { MyInput } from "myComponent";
   // 响应式数据
   const textValue = ref('');
   const passwordValue = ref('123456');
