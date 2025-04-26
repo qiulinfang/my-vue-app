@@ -1,11 +1,11 @@
 <template>
     <div>
-      <MySelect></MySelect>
+      <h1>仪表盘</h1>
+      <p>这里是首页内容...</p>
       </div>
   </template>
   
   <script setup>
-  import { MySelect } from "myComponent";
   // 可以在这里导入和使用其他组件或逻辑
   </script>
   

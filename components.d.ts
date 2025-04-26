@@ -77,6 +77,7 @@ declare module 'vue' {
     LangSelect: typeof import('./src/components/features/LangSelect/src/LangSelect.vue')['default']
     Layout: typeof import('./src/components/base/Layout/src/Layout.vue')['default']
     Link: typeof import('./src/components/base/Link/src/Link.vue')['default']
+    List: typeof import('./src/components/features/List/src/List.vue')['default']
     Loading: typeof import('./src/components/base/Loading/src/Loading.vue')['default']
     Main: typeof import('./src/components/base/Container/src/main.vue')['default']
     Menu: typeof import('./src/components/base/Menu/src/Menu.vue')['default']

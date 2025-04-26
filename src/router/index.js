@@ -8,7 +8,7 @@ import systemRouter from './modules/system';
 import baseComponentsRouter from './modules/baseComponent'; 
 import featuresComponentsRouter from './modules/featuresComponent'; 
 import directivesRouter from './modules/directives'; 
-// import productsRouter from './modules/products';
+import productsRouter from './modules/products';
 // import contentRouter from './modules/content';
 // import externalLinksRouter from './modules/external';
 // ... 如果有更多模块，继续导入
@@ -34,11 +34,11 @@ export const constantRoutes = [
 // 注意：这里的顺序可能影响菜单的显示顺序
 export const asyncRoutes = [
   dashboardRouter, // 首页通常放最前
-  systemRouter,
+  productsRouter,
   baseComponentsRouter,
   featuresComponentsRouter,
   directivesRouter,
-  // productsRouter,
+  systemRouter,
   // contentRouter,
   // externalLinksRouter,
   // ... 添加其他导入的模块路由

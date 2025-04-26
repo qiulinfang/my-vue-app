@@ -1,5 +1,9 @@
 <template>
-  <input type="text">
+<label for="name">姓名:</label>
+<input type="text" id="name" name="name" placeholder="请输入您的姓名">
+
+<label for="password">密码:</label>
+<input type="password" id="password" name="password">
 </template>
 
 <script setup>
