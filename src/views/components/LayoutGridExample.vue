@@ -1,9 +1,9 @@
 <template>
-  <MyLayoutGrid></MyLayoutGrid>
+  <MyLayout></MyLayout>
 </template>
 
 <script setup>
-import { MyLayoutGrid } from "myComponent";
+import { MyLayout } from "myComponent";
 </script>
 
 <style scoped>

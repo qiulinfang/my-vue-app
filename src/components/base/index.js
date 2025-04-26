@@ -73,3 +73,4 @@ export * from './TreeV2';
 export * from './Typography';
 export * from './Upload';
 export * from './Watermark';
+export * from './Scrollbar';
