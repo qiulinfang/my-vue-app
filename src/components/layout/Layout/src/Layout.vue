@@ -16,8 +16,8 @@
 
 <script setup>
 import { RouterView } from 'vue-router';
-import SidebarComponent from './Sidebar.vue';
-import HeaderComponent from './Header.vue';
+import SidebarComponent from '@/components/layout/Sidebar/src/Sidebar.vue';
+import HeaderComponent from '@/components/layout/Header/src/Header.vue';
 // Element Plus components are likely globally registered or correctly imported already
 </script>
 

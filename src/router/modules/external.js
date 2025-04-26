@@ -1,5 +1,5 @@
 // src/router/modules/external.js
-import Layout from '@/components/layout/Layout.vue';
+import Layout from '@/components/layout/Layout/src/Layout.vue';
 
 const externalLinksRouter = {
   path: '/external-links', // 使用一个路径来组织它们

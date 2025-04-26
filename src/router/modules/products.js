@@ -1,5 +1,5 @@
 // src/router/modules/products.js
-import Layout from '@/components/layout/Layout.vue';
+import Layout from '@/components/layout/Layout/src/Layout.vue';
 
 const productsRouter = {
   path: '/products',
