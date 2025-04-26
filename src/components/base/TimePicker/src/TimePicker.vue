@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h1>仪表盘</h1>
-        <p>这里是首页内容...</p>
+待开发
     </div>
 </template>
 
