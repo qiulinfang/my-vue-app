@@ -1,14 +1,10 @@
 <template>
-    <div>
-      <MySelect></MySelect>
-      </div>
-  </template>
-  
-  <script setup>
-  import { MySelect } from "myComponent";
-  // 可以在这里导入和使用其他组件或逻辑
-  </script>
-  
-  <style scoped>
-  /* 页面特定样式 */
-  </style>
+  <MySelect></MySelect>
+</template>
+
+<script setup>
+import { MySelect } from "myComponent";
+</script>
+
+<style scoped>
+</style>
