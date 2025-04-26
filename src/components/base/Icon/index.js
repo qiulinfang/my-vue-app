@@ -1,7 +1,7 @@
 // packages/components/src/components/Button/index.ts
 
 // 1. 导入 Vue 组件本身
-import IconComponent from './Icon.vue';
+import IconComponent from './src/Icon.vue';
 
 // 2. 导入并导出与 Button 相关的类型
 // 假设 types.ts 定义了 export type ButtonProps = { ... }; export type ButtonSize = 'small' | 'medium' | 'large';

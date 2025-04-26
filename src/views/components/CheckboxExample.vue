@@ -1,12 +1,14 @@
 <template>
     <div>
       <h1>仪表盘</h1>
-      <p>这里是首页内容...</p>
+      <MyCheckbox></MyCheckbox>
       </div>
   </template>
   
   <script setup>
   // 可以在这里导入和使用其他组件或逻辑
+  import { MyCheckbox } from "myComponent";
+
   </script>
   
   <style scoped>
