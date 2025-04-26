@@ -49,7 +49,7 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue';
-import MultilingualObjectForm from '@/components/features/MultiLang/MultiLang.vue'; // 引入子组件
+import MultilingualObjectForm from '@/components/features/MultiLang/src/MultiLang.vue'; // 引入子组件
 
 // --- 父组件状态 ---
 

@@ -5,7 +5,8 @@ import Layout from '@/components/layout/Layout/src/Layout.vue'; // 可以在这�
 // --- 导入各个模块的路由配置 ---
 import dashboardRouter from './modules/dashboard';
 import systemRouter from './modules/system';
-import componentsRouter from './modules/components'; 
+import baseComponentsRouter from './modules/baseComponent'; 
+import featuresComponentsRouter from './modules/featuresComponent'; 
 import directivesRouter from './modules/directives'; 
 // import productsRouter from './modules/products';
 // import contentRouter from './modules/content';
@@ -34,7 +35,8 @@ export const constantRoutes = [
 export const asyncRoutes = [
   dashboardRouter, // 首页通常放最前
   systemRouter,
-  componentsRouter,
+  baseComponentsRouter,
+  featuresComponentsRouter,
   directivesRouter,
   // productsRouter,
   // contentRouter,

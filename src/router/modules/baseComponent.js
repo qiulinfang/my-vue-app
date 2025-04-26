@@ -8,7 +8,7 @@ const componentsRouter = {
   // Redirect to the first component example or an overview page if you create one
   redirect: '/components/button',
   meta: {
-    title: '组件示例', // Title in the sidebar
+    title: '基本组件', // Title in the sidebar
     icon: 'Menu',      // Choose an Element Plus icon
     alwaysShow: true   // Ensure this top-level menu is always visible
   },
