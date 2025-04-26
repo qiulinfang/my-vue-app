@@ -1,4 +1,2 @@
 import CheckboxComponent from './src/Checkbox.vue';
-
-
-export const MyCheckboxr = CheckboxComponent;
+export const MyCheckbox = CheckboxComponent;
