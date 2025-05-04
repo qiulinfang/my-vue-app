@@ -1,5 +1,5 @@
 <template>
-  <MyButton></MyButton>
+  <MyButton>基本按钮</MyButton>
 </template>
 
 <script setup>
