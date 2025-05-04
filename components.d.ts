@@ -18,6 +18,7 @@ declare module 'vue' {
     Border: typeof import('./src/components/base/Border/src/Border.vue')['default']
     Breadcrumb: typeof import('./src/components/base/Breadcrumb/src/Breadcrumb.vue')['default']
     Button: typeof import('./src/components/base/Button/src/Button.vue')['default']
+    ButtonGroup: typeof import('./src/components/base/Button/src/button-group.vue')['default']
     Calendar: typeof import('./src/components/base/Calendar/src/Calendar.vue')['default']
     Card: typeof import('./src/components/base/Card/src/Card.vue')['default']
     Carousel: typeof import('./src/components/base/Carousel/src/Carousel.vue')['default']
