@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@floating-ui/vue": "^1.1.6",
+    "@vueuse/core": "^13.2.0",
     "axios": "^1.7.7",
     "babel": "^5.8.38",
     "element-plus": "^2.8.2",
