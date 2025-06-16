@@ -3,40 +3,40 @@
         "baseUrl": ".",
         "paths": {
             "~assets/*": [
-                "src/assets/*"
+                "apps/src/assets/*"
             ],
             "~components/*": [
-                "src/common/baseComponents/*"
+                "apps/src/common/baseComponents/*"
             ],
             "~locales/*": [
-                "src/locales/*"
+                "apps/src/locales/*"
             ],
             "~plugins/*": [
-                "src/plugins/*"
+                "apps/src/plugins/*"
             ],
             "~router/*": [
-                "src/router/*"
+                "apps/src/router/*"
             ],
             "~services/*": [
-                "src/services/*"
+                "apps/src/services/*"
             ],
             "~store/*": [
-                "src/store/*"
+                "apps/src/store/*"
             ],
             "~styles/*": [
-                "src/styles/*"
+                "apps/src/styles/*"
             ],
             "~test/*": [
-                "src/test/*"
+                "apps/src/test/*"
             ],
             "~utils/*": [
-                "src/utils/*"
+                "packages/utils/*"
             ],
             "~views/*": [
-                "src/views/*"
+                "apps/src/views/*"
             ],
             "~/*": [
-                "src/*"
+                "apps/src/*"
             ]
         }
     }
