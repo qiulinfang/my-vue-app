@@ -1,5 +1,5 @@
 // src/router/modules/dashboard.js
-import Layout from '@/components/layout/Layout/src/Layout.vue';
+import Layout from 'myComponent';
 
 const dashboardRouter = {
   // 注意：如果 Dashboard 是根路径 '/' 的一部分，需要确保路径和名称不与其他模块冲突

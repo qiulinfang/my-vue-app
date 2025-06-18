@@ -1,5 +1,5 @@
 {
-  "name": "@my-app/docs", 
+  "name": "@my-app/docs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,11 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@floating-ui/vue": "^1.1.6",
     "@vueuse/core": "^13.2.0",
     "axios": "^1.7.7",
     "babel": "^5.8.38",
-    "element-plus": "^2.8.2",
+    "element-plus": "^2.10.2",
     "esbuild": "^0.23.1",
     "path-browserify": "^1.0.1",
     "pinia": "^3.0.1",

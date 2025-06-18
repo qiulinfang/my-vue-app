@@ -1,6 +1,5 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import Layout from '@/components/layout/Layout/src/Layout.vue'; // 可以在这里导入，或者确认在模块中导入即可
 
 // --- 导入各个模块的路由配置 ---
 import dashboardRouter from './modules/dashboard';

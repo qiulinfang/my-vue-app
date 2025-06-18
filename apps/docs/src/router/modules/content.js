@@ -1,5 +1,5 @@
 // src/router/modules/content.js
-import Layout from '@/components/layout/Layout/src/Layout.vue';
+import Layout from 'myComponent';
 
 const contentRouter = {
   path: '/content',

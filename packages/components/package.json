@@ -1,0 +1,19 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.1",
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.1",
+    "@floating-ui/vue": "^1.1.6",
+    "@vueuse/core": "^13.2.0",
+    "element-plus": "^2.10.2"
+  }
+}

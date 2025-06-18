@@ -14,6 +14,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@element-plus/icons-vue':
+        specifier: ^2.3.1
+        version: 2.3.1(vue@3.5.16(typescript@5.8.3))
       '@floating-ui/vue':
         specifier: ^1.1.6
         version: 1.1.6(vue@3.5.16(typescript@5.8.3))
@@ -27,7 +30,7 @@ importers:
         specifier: ^5.8.38
         version: 5.8.38
       element-plus:
-        specifier: ^2.8.2
+        specifier: ^2.10.2
         version: 2.10.2(vue@3.5.16(typescript@5.8.3))
       esbuild:
         specifier: ^0.23.1
@@ -134,6 +137,21 @@ importers:
       vue-tsc:
         specifier: ^2.2.8
         version: 2.2.10(typescript@5.8.3)
+
+  packages/components:
+    dependencies:
+      '@floating-ui/dom':
+        specifier: ^1.7.1
+        version: 1.7.1
+      '@floating-ui/vue':
+        specifier: ^1.1.6
+        version: 1.1.6(vue@3.5.16(typescript@5.8.3))
+      '@vueuse/core':
+        specifier: ^13.2.0
+        version: 13.3.0(vue@3.5.16(typescript@5.8.3))
+      element-plus:
+        specifier: ^2.10.2
+        version: 2.10.2(vue@3.5.16(typescript@5.8.3))
 
   packages/js-core-playground:
     devDependencies:
