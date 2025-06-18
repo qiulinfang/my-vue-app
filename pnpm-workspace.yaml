@@ -1,0 +1,6 @@
+# 文件路径: my-vue-app/pnpm-workspace.yaml
+packages:
+  # 匹配 'apps' 目录下的所有子目录
+  - 'apps/*'
+  # 匹配 'packages' 目录下的所有子目录
+  - 'packages/*'
