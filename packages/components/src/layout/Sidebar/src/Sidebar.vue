@@ -22,7 +22,7 @@ import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { asyncRoutes } from '@/router'; // <--- 导入 asyncRoutes
 import { ElMenu, ElScrollbar } from 'element-plus';
-import SidebarItem from '@/layout/SidebarItem/src/SidebarItem.vue'; // 引入递归菜单项组件
+import SidebarItem from 'myComponent/layout/SidebarItem/src/SidebarItem.vue'; // 引入递归菜单项组件
 // import { routes } from '@/router'; // 如果路由是静态导入的
 import router from '@/router'; // 导入 router 实例以获取动态添加的路由
 
