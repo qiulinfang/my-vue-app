@@ -1,5 +1,6 @@
 export * from './base';
 export * from './features';
+export * from './base';
 
 import * as base from './base';
 const install= (app, options) => {

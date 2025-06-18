@@ -1,6 +1,6 @@
 <template>
   <div>
-      <el-header>
+    <el-header>
       <HeaderComponent />
     </el-header>
     <el-container class="layout-container">

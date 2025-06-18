@@ -1,6 +1,8 @@
 // src/router/modules/dashboard.js
 import Layout from 'myComponent';
 
+console.log(Layout)
+
 const dashboardRouter = {
   // 注意：如果 Dashboard 是根路径 '/' 的一部分，需要确保路径和名称不与其他模块冲突
   // 或者调整结构，让 '/' 作为顶级容器，动态添加模块作为其 children
