@@ -1,5 +1,5 @@
 // src/router/modules/components.js
-import Layout from 'myComponent'; // Your main layout component
+import {Layout }from 'myComponent'; // Your main layout component
 
 const componentsRouter = {
   path: '/featuresComponents', // Base path for component examples

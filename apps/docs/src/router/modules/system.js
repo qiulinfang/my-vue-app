@@ -1,5 +1,5 @@
 // src/router/modules/system.js
-import Layout from 'myComponent';
+import {Layout }from 'myComponent';
 
 const systemRouter = {
   path: '/system',

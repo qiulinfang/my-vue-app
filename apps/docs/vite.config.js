@@ -10,7 +10,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'), 
-      'myComponent': path.resolve(__dirname, '../../packages/components')
+      'myComponent': path.resolve(__dirname, '../../packages/components/src')
     },
   },
   plugins: [ 

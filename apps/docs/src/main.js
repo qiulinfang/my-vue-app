@@ -7,7 +7,7 @@ import 'element-plus/dist/index.css'
 import './styles/index.css'
 // 引入 Element Plus 图标（如果 Sidebar 中使用了）
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import components from '../../../packages/components'
+import components from '../../../packages/components/src'
 
 const app = createApp(App)
 
