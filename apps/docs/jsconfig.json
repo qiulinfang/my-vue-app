@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "~assets/*": [
+                "apps/src/assets/*"
+            ],
+            "~components/*": [
+                "apps/src/common/baseComponents/*"
+            ],
+            "~locales/*": [
+                "apps/src/locales/*"
+            ],
+            "~plugins/*": [
+                "apps/src/plugins/*"
+            ],
+            "~router/*": [
+                "apps/src/router/*"
+            ],
+            "~services/*": [
+                "apps/src/services/*"
+            ],
+            "~store/*": [
+                "apps/src/store/*"
+            ],
+            "~styles/*": [
+                "apps/src/styles/*"
+            ],
+            "~test/*": [
+                "apps/src/test/*"
+            ],
+            "~utils/*": [
+                "packages/utils/*"
+            ],
+            "~views/*": [
+                "apps/src/views/*"
+            ],
+            "~/*": [
+                "apps/src/*"
+            ]
+        }
+    }
+}

@@ -1,0 +1,5 @@
+import "@/styles/components/aside.scss"
+import "@/styles/components/container.scss"
+import "@/styles/components/footer.scss"
+import "@/styles/components/header.scss"
+import "@/styles/components/main.scss"
