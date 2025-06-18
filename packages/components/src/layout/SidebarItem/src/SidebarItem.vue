@@ -52,7 +52,7 @@
 
 <script setup>
 import { computed } from 'vue'; // 移除了 ref，因为不再需要 onlyOneChild ref
-import { isExternal } from 'utils';
+import { isExternal } from '@/utils';
 import AppLink from 'myComponent/layout/Link/src/Link.vue';
 import { ElMenuItem, ElSubMenu, ElIcon } from 'element-plus';
 
