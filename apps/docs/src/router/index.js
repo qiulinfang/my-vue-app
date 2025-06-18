@@ -29,6 +29,8 @@ export const constantRoutes = [
   // 你可能还有 /redirect 等其他常量路由
 ];
 
+
+
 // --- 需要权限或动态添加的路由，由模块组成 ---
 // 注意：这里的顺序可能影响菜单的显示顺序
 export const asyncRoutes = [
@@ -42,6 +44,9 @@ export const asyncRoutes = [
   // externalLinksRouter,
   // ... 添加其他导入的模块路由
 ];
+
+console.log('Vue Router Final Routes:', asyncRoutes) // <--- 添加这一行
+
 
 // --- 创建 Router 实例 ---
 const router = createRouter({

@@ -1,17 +1,19 @@
 <template>
-  <el-header>
-    <HeaderComponent />
-  </el-header>
-  <el-container class="layout-container">
-    <el-container>
-      <el-aside width="200px">
-        <SidebarComponent />
-      </el-aside>
-      <el-main>
-        <router-view />
-      </el-main>
+  <div>
+    <el-header>
+      <HeaderComponent />
+    </el-header>
+    <el-container class="layout-container">
+      <el-container>
+        <el-aside width="200px">
+          <SidebarComponent />
+        </el-aside>
+        <el-main>
+          <router-view />
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
+  </div>
 </template>
 
 <script setup>
