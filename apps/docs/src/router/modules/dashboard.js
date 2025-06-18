@@ -1,5 +1,7 @@
 // src/router/modules/dashboard.js
-import Layout from 'myComponent';
+import {Layout }from 'myComponent';
+
+console.log(Layout)
 
 console.log(Layout)
 

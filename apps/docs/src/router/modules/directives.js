@@ -1,5 +1,5 @@
 // src/router/modules/directives.js
-import Layout from 'myComponent'; // Import your main layout component
+import {Layout }from 'myComponent'; // Import your main layout component
 
 // Define routes for custom directive examples
 const directivesRouter = {

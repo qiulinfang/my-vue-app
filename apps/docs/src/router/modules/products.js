@@ -1,5 +1,5 @@
 // src/router/modules/products.js
-import Layout from 'myComponent';
+import {Layout }from 'myComponent';
 
 const productsRouter = {
   path: '/products',
