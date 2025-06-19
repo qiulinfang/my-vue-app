@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>跨域测试页面</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    button { font-size: 1.2em; padding: 10px 20px; }
+    #result { margin-top: 20px; color: blue; font-weight: bold; }
+    #error { margin-top: 20px; color: red; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>前端页面 (源: http://localhost:8000)</h1>
+  <p>将尝试从 <b>http://localhost:3000</b> 获取数据</p>
+
+  <button id="fetch-button">点我获取数据</button>
+
+  <div id="result"></div>
+  <div id="error"></div>
+
+  <script>
+    document.getElementById('fetch-button').addEventListener('click', () => {
+      const resultDiv = document.getElementById('result');
+      const errorDiv = document.getElementById('error');
+      resultDiv.textContent = '正在请求...';
+      errorDiv.textContent = '';
+
+      console.log('发起跨域请求到 http://localhost:3000/api/data');
+
+      // 使用 fetch API 请求不同源的数据
+      fetch('http://localhost:3000/api/data')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('网络响应不正常');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('✅ 请求成功!', data);
+          resultDiv.textContent = '成功获取数据：' + data.message;
+        })
+        .catch(error => {
+          console.error('❌ 请求失败!', error);
+          resultDiv.textContent = '';
+          errorDiv.innerHTML = '<h3>跨域请求失败！</h3>' + error.toString() + '<p>请按 F12 查看浏览器控制台的详细 CORS 错误信息。</p>';
+        });
+    });
+  </script>
+</body>
+</html>
