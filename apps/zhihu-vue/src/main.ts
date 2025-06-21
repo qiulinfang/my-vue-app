@@ -3,6 +3,7 @@ import './style.css'
 import App from './App.vue'
 import { store, key } from './vuex';
 import { createPinia } from 'pinia' // <-- 第 1 步：从 pinia 导入 createPinia
+import router from './router'
 
 const app = createApp(App);
 
@@ -11,5 +12,6 @@ const app = createApp(App);
 app.use(store, key);
 const pinia = createPinia()     // <-- 第 2 步：创建一个 Pinia 实例
 app.use(pinia)                  // <-- 第 3 步：将 Pinia 实例安装到应用中
+app.use(router)                  // <-- 第 3 步：将 Pinia 实例安装到应用中
 
 app.mount('#app');

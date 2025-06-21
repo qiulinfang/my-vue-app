@@ -15,11 +15,11 @@
 // 1. 导入 vue 的 computed
 import { computed } from 'vue';
 // 2. 导入我们自己创建的、类型化的 useStore hook
-import { useStore } from './vuex'; // @ 是 src 目录的别名，这是标准配置
+import { useStore } from '../vuex'; // @ 是 src 目录的别名，这是标准配置
 
 // 导入子组件
-import ProductList from './components/ProductList.vue';
-import ShoppingCart from './components/ShoppingCart.vue';
+import ProductList from '../components/ProductList.vue';
+import ShoppingCart from '../components/ShoppingCart.vue';
 
 // 3. 获取类型化的 store 实例
 const store = useStore();
