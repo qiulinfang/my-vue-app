@@ -8,7 +8,7 @@
       <h4>推荐阅读:</h4>
       <ul>
         <li v-for="item in recommended" :key="item.id">
-          <router-link :to="`/article/${item.id}`">{{ item.title }}</router-link>
+          <router-link :to="`/article/${ .id}`">{{ item.title }}</router-link>
         </li>
       </ul>
     </div>
