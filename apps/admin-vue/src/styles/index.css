@@ -1,0 +1,23 @@
+/* src/styles/index.css */
+
+/* 基本的 CSS Reset */
+body, html, #app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 你可以在这里添加更多的全局样式 */
+  a {
+    text-decoration: none;
+    color: inherit; /* 继承父元素颜色 */
+  }
+
+  @import './components/button.scss';

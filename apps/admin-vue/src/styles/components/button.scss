@@ -1,0 +1,179 @@
+.my-button {
+  display: inline-block; /* Allow setting width/height/padding */
+  line-height: 1; /* Often helps with vertical alignment */
+  white-space: nowrap; /* Prevent text wrapping */
+  cursor: pointer;
+  background: #ffffff; /* Default background */
+  border: 1px solid #dcdfe6; /* Default border */
+  color: #606266; /* Default text color */
+  -webkit-appearance: none; /* Reset default browser styles */
+  appearance: none;
+  text-align: center;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  outline: none; /* Remove default focus outline (add custom later) */
+  margin: 0;
+  transition: .1s; /* Smooth transitions for hover/focus */
+  font-weight: 500; /* Medium font weight */
+  user-select: none; /* Prevent text selection */
+  vertical-align: middle; /* Align nicely with adjacent inline elements */
+
+  /* Default padding and font size (medium size) */
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px; /* Default slight rounding */
+}
+
+/* Basic Hover and Focus states for default button */
+.my-button:hover,
+.my-button:focus {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+
+/* Basic Active state (while clicking) */
+.my-button:active {
+  color: #3a8ee6;
+  border-color: #3a8ee6;
+  outline: none; /* Ensure outline is removed during click */
+}
+
+/* ==================================
+   Type Modifiers (.my-button--*)
+   ================================== */
+.my-button--primary {
+  color: #ffffff;
+  background-color: #409eff; /* Primary blue */
+  border-color: #409eff;
+}
+
+/* Hover/Focus/Active for Primary */
+.my-button--primary:hover,
+.my-button--primary:focus {
+  background: #66b1ff; /* Lighter blue */
+  border-color: #66b1ff;
+  color: #ffffff;
+}
+.my-button--primary:active {
+  background: #3a8ee6; /* Darker blue */
+  border-color: #3a8ee6;
+  color: #ffffff;
+  outline: none;
+}
+/* Add similar blocks for --success, --warning, --danger, --info etc. */
+
+
+/* ==================================
+   Size Modifiers (.my-button--*)
+   ================================== */
+.my-button--large {
+  padding: 14px 24px; /* More padding */
+  font-size: 16px;    /* Larger font */
+  border-radius: 6px; /* Slightly more rounding */
+}
+/* Add similar blocks for --medium (if different from base), --small, --mini */
+
+
+/* ==================================
+   Style/State Modifiers (.is-*)
+   ================================== */
+
+/* Plain Modifier */
+.is-plain {
+  /* Base plain styles might involve slight background/border */
+}
+
+/* Plain + Primary */
+.my-button--primary.is-plain {
+  color: #409eff; /* Text is primary color */
+  background: #ecf5ff; /* Light primary background */
+  border-color: #b3d8ff; /* Lighter primary border */
+}
+.my-button--primary.is-plain:hover,
+.my-button--primary.is-plain:focus {
+  background: #409eff; /* Primary background on hover */
+  border-color: #409eff;
+  color: #ffffff; /* White text on hover */
+}
+.my-button--primary.is-plain:active {
+  background: #3a8ee6; /* Darker primary on active */
+  border-color: #3a8ee6;
+  color: #ffffff;
+  outline: none;
+}
+/* Add similar blocks for other types combined with .is-plain */
+
+
+/* Round Modifier */
+.is-round {
+  border-radius: 20px; /* Fully rounded ends, overrides other radius */
+  /* Padding might need adjustment if base padding looks odd with this radius */
+  /* Example: padding: 12px 23px; */
+}
+
+
+/* Circle Modifier */
+.is-circle {
+  border-radius: 50%; /* Perfect circle */
+  padding: 12px; /* Fixed padding, often for icon-only buttons */
+  /* This padding should override size-specific padding */
+}
+
+
+/* Disabled State */
+.is-disabled,
+.is-disabled:hover,
+.is-disabled:focus,
+.is-disabled:active {
+  /* Use more specific selectors to ensure override */
+  color: #c0c4cc;
+  cursor: not-allowed; /* No interaction cursor */
+  background-image: none;
+  background-color: #ffffff;
+  border-color: #ebeef5;
+  opacity: 0.6; /* Make it visually faded */
+}
+/* Disabled state for specific types needs overrides too */
+.my-button--primary.is-disabled,
+.my-button--primary.is-disabled:hover,
+.my-button--primary.is-disabled:focus,
+.my-button--primary.is-disabled:active {
+   color: #ffffff;
+   background-color: #a0cfff; /* Lighter, muted primary */
+   border-color: #a0cfff;
+   opacity: 0.6;
+}
+/* Add similar overrides for other types + disabled */
+/* If using the :disabled attribute on <button>, you might use: */
+/* .my-button:disabled, .my-button:disabled:hover { ... } */
+
+
+/* Loading State */
+.is-loading {
+  position: relative; /* Needed for positioning the icon */
+  pointer-events: none; /* Prevent clicks while loading */
+  /* Optionally slightly fade the button itself */
+  /* opacity: 0.8; */
+}
+
+/* Style the spinner icon */
+.my-icon-loading {
+  display: inline-block;
+  /* Add animation */
+  animation: rotating 1.5s linear infinite;
+  /* Potentially style size/color if not inherited */
+  /* font-size: 14px; */
+  /* vertical-align: middle; */ /* Align with text if text is visible */
+}
+
+/* If you hide text during loading, the icon might need centering */
+.is-loading .my-icon-loading {
+  /* Example: if text is hidden, center the spinner */
+   margin: 0 5px; /* Adjust spacing as needed */
+}
+
+/* You might hide the actual button text/slot content when loading */
+.is-loading > span, /* Target the slot span */
+.is-loading > i:not(.my-icon-loading) /* Target other icons */ {
+  opacity: 0; /* Hide content visually */
+}
