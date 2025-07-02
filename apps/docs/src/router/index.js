@@ -65,8 +65,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   // TODO: 替换为真实的权限判断和路由添加逻辑
   // 示例逻辑：
-  // const token = localStorage.getItem('your_token_key'); // 假设从 localStorage 获取 token
-  const token = 111; // 假设从 localStorage 获取 token
+  const token = localStorage.getItem('your_token_key'); // 假设从 localStorage 获取 token
   const hasRoutes = router.hasRoute('Dashboard'); // 检查核心路由是否存在判断是否已添加
 
   if (token) { // 已登录

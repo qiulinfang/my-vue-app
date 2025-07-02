@@ -80,10 +80,10 @@ const logout = async () => {
       type: 'warning',
     });
     // 调用你的退出登录接口或清除本地存储/Pinia状态
-    // 清除 token, 用户信息等...
+    localStorage.removeItem('your_token_key'); // 假设从 localStorage 获取 token
     // store.dispatch('user/logout'); // 示例：如果使用 Pinia/Vuex
     // 跳转到登录页
-    router.push(`/login?redirect=${router.currentRoute.value.fullPath}`);
+    router.push(`/login`);
   } catch (error) {
     // 用户点击了取消或关闭弹窗
     if (error !== 'cancel') {
