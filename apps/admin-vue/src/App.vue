@@ -1,10 +1,12 @@
 <template>
+  <WebSocketDemo />
   <router-view />
 </template>
 
 <script setup>
 // 导入 RouterView 组件 (显式导入是一个好习惯)
 import { RouterView } from 'vue-router';
+import WebSocketDemo from './components/WebSocketDemo.vue'
 
 // 对于后台管理系统的根组件 App.vue：
 // - 通常不需要包含复杂的响应式状态或方法。
